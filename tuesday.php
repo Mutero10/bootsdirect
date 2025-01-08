@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-require 'C:/xampp/htdocs/api_exempt/vendor/autoload.php';
+require 'C:/Apache24/htdocs/includes/vendor/autoload.php';
 
 $twoFactorCode = mt_rand(100000, 999999); // Generate a 6-digit code
 
@@ -16,6 +16,15 @@ $twoFactorCode = mt_rand(100000, 999999); // Generate a 6-digit code
 $_SESSION['twoFactorCode'] = $twoFactorCode;
 $_SESSION['userEmail'] = $_POST['email']; // Store user's email for verification
 echo "Generated Code: " . $twoFactorCode;  // For debugging purposes
+
+if (!send2FACode($_POST['email'], $twoFactorCode)) {
+    echo "Failed to send the 2FA code. Please try again.";
+    exit();
+}
+
+// Redirect to verify-2fa.php after sending the code
+header('Location: /includes/verify-2fa.php');
+exit();
 
 // Debugging to check session variables
 echo "<pre>";
@@ -58,7 +67,7 @@ if (!send2FACode($_POST['email'], $twoFactorCode)) {
     exit;
 }
 
-header('Location: /api_exempt/includes/verify-2fa.php');
+header('Location: /includes/verify-2fa.php');
 exit;
 
 //session_start();
@@ -75,8 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Invalid 2FA Code. Please try again.";
     }
 }
-
 ?>
+
 <form method="POST">
     <label for="twoFactorCode">Enter the 2FA Code sent to your email:</label>
     <input type="text" name="twoFactorCode" id="twoFactorCode" required>

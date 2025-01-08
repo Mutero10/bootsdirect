@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+$message = ''; // Variable for storing feedback messages
+$messageType = ''; // 'success' or 'error'
+
 // Include necessary files
 require_once 'databasehandler.php';
 require_once 'formhandler.php';
@@ -22,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Redirect to verify-2fa.php for the user to input the verification code
     header('Location: verify-2fa.php');
     exit();
+    include 'formsubmit.php';
 }
 ?>
 
@@ -63,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
                 </div>
 
-
+                
                 <div id="error" style="color: red; margin-top: 10px;"></div>
 
         <!-- Buttons-->
