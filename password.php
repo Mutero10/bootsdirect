@@ -23,14 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Send the reset link to the user's email
             require 'tuesday.php'; // Assume PHPMailer is set up here
-            $resetLink = "http://localhost/api_exempt/includes/reset_password.php?token=$resetToken";
+            $resetLink = "http://localhost/includes/reset_password.php?token=$resetToken";
             $subject = "Password Reset Request";
             $body = "Hi, <br><br>Click <a href='$resetLink'>here</a> to reset your password. The link will expire in 1 hour.<br><br>Thanks!";
             
             $mail = new PHPMailer(true);
             try {
                 // Set mail parameters
-                $mail->setFrom('your_email@example.com', 'Your Application');
+                $mail->setFrom('amutero5@gmail.com', 'Your Application');
                 $mail->addAddress($email);
                 $mail->Subject = $subject;
                 $mail->Body = $body;
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<form method="POST" action="forgot_password.php">
+<form method="POST" action="reset_password.php">
     <label for="email">Enter your email address:</label>
     <input type="email" name="email" required>
     <button type="submit">Request Password Reset</button>
