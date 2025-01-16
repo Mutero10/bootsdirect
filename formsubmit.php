@@ -69,6 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 
                 <div id="error" style="color: red; margin-top: 10px;"></div>
+        <!-- Password link -->
+          <a href ="password.php"> Forgotten Password? </a>
 
         <!-- Buttons-->
             <div class ="text-center">
