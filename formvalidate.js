@@ -24,29 +24,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
           
-       // Validate Name (Only alphabetic characters and spaces)
-       if (!name || name.value.trim() === '') {
-        messages.push('Name is required');
-    }
-    if (name.value.trim() !== '' && !/^[A-Za-z\s]+$/.test(name.value.trim())) {
-        messages.push('Name must contain only alphabetic characters');
-    }
+       
+            // Validate Name (Only alphabetic characters and spaces)
+            if (name.value.trim() === '') {
+                messages.push('Name is required');
+            } else if (!/^[A-Za-z\s]+$/.test(name.value.trim())) {
+                messages.push('Name must contain only alphabetic characters');
+            }
     
 
             // Validate Password (Length must be greater than 6)
-            if (password && password.value.length <= 6) {
+            if (password.value.trim() === '') {
+                messages.push('Password is required');
+            } else if (password.value.length <= 6) {
                 messages.push('Password must be longer than 6 characters');
             }
 
             // Display Error Messages
             if (messages.length > 0) {
-                e.preventDefault();
-                if (errorElement) {
-                    errorElement.innerText = messages.join(', ');
-                } else {
-                    console.error('Error element not found.');
-                }
+                e.preventDefault(); // STOP form submission
+                errorElement.innerText = messages.join(', '); // Show error messages
+                errorElement.style.color = "red"; // Make errors visible
             }
+        
+            
         });
     }
 
