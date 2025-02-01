@@ -17,13 +17,21 @@ document.addEventListener('DOMContentLoaded', () => {
         signupForm.addEventListener('submit', (e) => {
             let messages = [];
 
+    // Ensure all fields exist before validating
+        if (!name || !password || !errorElement) {
+            console.error('One or more form elements not found.');
+            return;
+            }
+
           
        // Validate Name (Only alphabetic characters and spaces)
-    if (!name || name.value.trim() === '') {
+       if (!name || name.value.trim() === '') {
         messages.push('Name is required');
-    } else if (!/^[A-Za-z\s]+$/.test(name.value.trim())) {
+    }
+    if (name.value.trim() !== '' && !/^[A-Za-z\s]+$/.test(name.value.trim())) {
         messages.push('Name must contain only alphabetic characters');
     }
+    
 
             // Validate Password (Length must be greater than 6)
             if (password && password.value.length <= 6) {
