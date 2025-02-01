@@ -12,16 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('name');
         const password = document.getElementById('password');
         const errorElement = document.getElementById('error');
+        
 
         signupForm.addEventListener('submit', (e) => {
             let messages = [];
 
           
-            if (!name || name.value.trim() === '') {
-                messages.push('Name is required');
-            } else if (!/^[A-Za-z\s]+$/.test(name.value.trim())) {
-                messages.push('Name must contain only alphabetic characters');
-            }
+            // Validate Name (Only alphabetic characters and spaces)
+    if (!name || name.value.trim() === '') {
+        messages.push('Name is required');
+    }
+    if (name.value.trim() !== '' && !/^[A-Za-z\s]+$/.test(name.value.trim())) {
+        messages.push('Name must contain only alphabetic characters');
+    }
 
             // Validate Password (Length must be greater than 6)
             if (password && password.value.length <= 6) {
