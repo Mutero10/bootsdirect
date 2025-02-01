@@ -52,10 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            <h1 class="text-center mb-4" style ="font-family: 'Palatino Black', serif;">SIGN UP</h1>
             <form action ="formsubmit.php" method="POST" id="form" novalidate>
 
-              <!--  <div class="mb-3">
-                    <label for="student_id" class="form-label">Student ID</label>
-                    <input type="text" class="form-control" id="student_id" name="student_id" placeholder="Enter Student ID" required>
-                </div> -->
+                <div class="mb-3">
+                    <label for="student_id" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="student_id" name="student_id" placeholder="Enter your names" required>
+                </div> 
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
