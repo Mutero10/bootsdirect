@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (signupForm) {
         console.log('Signup form detected.');
 
-      /*  const student_id = document.getElementById('student_id'); */
         const name = document.getElementById('name');
         const password = document.getElementById('password');
         const errorElement = document.getElementById('error');
@@ -51,13 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', (e) => {
             let messages = [];
 
-            // Validate Student ID (Exactly 6 numeric characters)
-         /*   if (!student_id || student_id.value.trim() === '') {
-                messages.push('Student ID is required');
-            } else if (!/^\d{6}$/.test(student_id.value)) {
-                messages.push('Student ID must be exactly 6 numeric characters');
-            }
-*/
             // Validate Password (Length must be greater than 6)
             if (!password || password.value.trim() === '') {
                 messages.push('Password is required');
