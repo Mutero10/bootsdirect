@@ -44,12 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- Image -->
          <div class ="col-md-12 text-center">
-            <img src = "Chess photo.jpg" alt ="Signup" class ="img-fluid rounded w-100">
+            <img src = "nike.png" alt ="Signup" class ="img-fluid rounded w-100">
         </div>
 
 
         <!-- Form --> 
-           <h1 class="text-center mb-4" style ="font-family: 'Palatino Black', serif;">CLUBS SIGN UP</h1>
+           <h1 class="text-center mb-4" style ="font-family: 'Palatino Black', serif;">SIGN UP</h1>
             <form action ="formsubmit.php" method="POST" id="form" novalidate>
 
                 <div class="mb-3">
