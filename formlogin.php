@@ -50,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="clubs.php" id ="loginForm"  method="POST">
                
                <div class="mb-3">
-                 <label for="student_id" class="form-label">Student ID</label>
-                 <input type="text" class="form-control" id="student_id" name="student_id" placeholder="e.g, 123456" required>
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="e.g., username@gmail.com" required>
                 </div>
 
                 <div class="mb-3">
