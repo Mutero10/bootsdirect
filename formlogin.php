@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- Image -->
         <div class ="col-md-12 text-center"> 
-            <img src ="Archery.jpg" alt ="LogIn" class ="img-fluid rounded w-100">
+            <img src ="messi.jpg" alt ="LogIn" class ="img-fluid rounded w-100">
         </div>
 
             
