@@ -17,19 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
         signupForm.addEventListener('submit', (e) => {
             let messages = [];
 
-            // Validate Student ID (Exactly 6 numeric characters)
-         /*   if (!student_id || student_id.value.trim() === '') {
-                messages.push('Student ID is required');
-            } else if (!/^\d{6}$/.test(student_id.value)) {
-                messages.push('Student ID must be exactly 6 numeric characters');
-            }
-/*
-            /* Validate Name (Cannot be blank)
+          
             if (!name || name.value.trim() === '') {
                 messages.push('Name is required');
             } else if (!/^[A-Za-z\s]+$/.test(name.value.trim())) {
                 messages.push('Name must contain only alphabetic characters');
-            }*/
+            }
 
             // Validate Password (Length must be greater than 6)
             if (password && password.value.length <= 6) {
