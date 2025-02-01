@@ -18,11 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
             let messages = [];
 
           
-            // Validate Name (Only alphabetic characters and spaces)
+       // Validate Name (Only alphabetic characters and spaces)
     if (!name || name.value.trim() === '') {
         messages.push('Name is required');
-    }
-    if (name.value.trim() !== '' && !/^[A-Za-z\s]+$/.test(name.value.trim())) {
+    } else if (!/^[A-Za-z\s]+$/.test(name.value.trim())) {
         messages.push('Name must contain only alphabetic characters');
     }
 
