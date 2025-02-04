@@ -78,9 +78,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
    <h1 style ="text-align:center"> POPULAR RIGHT NOW </h1> <br>
 
-    <a href ="adidas.php"> Adidas </a>
-    <a href ="nike.php"> Nike </a>
-    <a href ="puma.php"> Puma </a>
+    <a href ="adidas.php"> Adidas </a> <br>
+    <a href ="nike.php"> Nike </a> <br>
+    <a href ="puma.php"> Puma </a> <br>
 
     <!-- Layout --> 
     <div class ="row mt-5">
