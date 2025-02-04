@@ -76,14 +76,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <body class ="bg-light">
 
-   <h1 style ="text-align:center"> POPULAR RIGHT NOW </h1> <br>
+   <h1 style ="text-align:center"> POPULAR RIGHT NOW <b> </h1> <br> 
 
-    <a href ="adidas.php"> Adidas </a> <br>
-    <a href ="nike.php"> Nike </a> <br>
-    <a href ="puma.php"> Puma </a> <br>
+    <a href ="adidas.php"> Adidas </a> <hr><br>
+    <a href ="nike.php"> Nike </a> <hr> <br>
+    <a href ="puma.php"> Puma </a> <hr> <br>
 
-    <!-- Layout --> 
-    <div class ="row mt-5">
+    <h1 style ="text-align:center"> NEW ARRIVALS </h1> <br>
+
+    <h1 style ="text-align:center"> WHAT'S HOT </h1>
 
    
 
