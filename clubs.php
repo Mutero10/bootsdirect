@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <body class ="bg-light">
 
-   <h1> POPULAR RIGHT NOW </h1> <br>
+   <h1 style ="text-align:center"> POPULAR RIGHT NOW </h1> <br>
 
     <a href ="adidas.php"> Adidas </a>
     <a href ="nike.php"> Nike </a>
