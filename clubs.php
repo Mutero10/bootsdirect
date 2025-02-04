@@ -75,47 +75,17 @@ document.addEventListener('DOMContentLoaded', function () {
 </head>
 
 <body class ="bg-light">
-    <div class = "container">
-
-    <h1 class ="text-center mt-4" style ="font-family: 'Graphik';"> CLUBS REGISTRATION FOR 2025 </h1>
+   
+    <a href ="adidas.php"> Adidas </a>
+    <a href ="nike.php"> Nike </a>
+    <a href ="puma.php"> Puma </a>
 
     <!-- Layout --> 
     <div class ="row mt-5">
 
-    <!-- Available Clubs -->
-    <div class ="col-md-4">
-    <h2 style ="font-family: 'Palatino Black', serif;"> AVAILABLE CLUBS </h2>
-    <form id ="clubForm">
+   
 
-<ol class ="list-group"> 
-    <li class ="list-group-item"> <input type ="checkbox" name ="clubs" value ="Chess Club"> Chess Club </li>
-    <li class ="list-group-item"> <input type ="checkbox" name ="clubs" value ="Archery Club"> Archery Club </li>
-    <li class ="list-group-item"> <input type ="checkbox" name ="clubs" value ="Chinese Club"> Chinese Club </li>
-    <li class ="list-group-item"> <input type ="checkbox" name ="clubs" value ="Dance Club"> Dance Club </li>
-    <li class ="list-group-item"> <input type ="checkbox" name ="clubs" value ="Film Club"> Film Club </li>
-    <li class ="list-group-item"> <input type ="checkbox" name ="clubs" value ="Journalism Club"> Journalism Club </li>
-    <li class ="list-group-item"> <input type ="checkbox" name ="clubs" value ="Music Club"> Music Club </li>
-    <li class ="list-group-item"> <input type ="checkbox" name ="clubs" value ="French Club"> French Club </li>
-    <li class ="list-group-item"> <input type ="checkbox" name ="clubs" value ="Spanish Club"> Spanish Club </li>
-    <li class ="list-group-item"> <input type ="checkbox" name ="clubs" value ="Art Club"> Art Club </li>
-</ol>
 
-    <button type="button" class ="btn btn-dark mt-3" onclick="registerClubs()">Register</button>  
-        <br><br>
-    </form>
-</div>
-
-<!-- Registered Clubs --> 
-    <div class ="col-md-8">
-     <h2 style ="font-family: 'Palatino Black', serif;">REGISTERED CLUBS</h2>
-
-    <div id="registeredClubs" style="display:none;" class ="mt-3">
-        <!-- The registered clubs will be displayed here -->
-    </div>
-
-  </div>
- </div>
-</div>  
 
 </body>
 </html>
