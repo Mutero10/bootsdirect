@@ -87,6 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
     <img src ="boots2.jpeg" width ="300px">
 
     <h1 style ="text-align:center"> WHAT'S HOT </h1>
+    <img src ="boots3.avif" width ="300px">
+    <img src ="boots4.webp" width ="300px">
 
    
 
