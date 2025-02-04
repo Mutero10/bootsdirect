@@ -83,6 +83,8 @@ document.addEventListener('DOMContentLoaded', function () {
     <a href ="puma.php"> Puma </a> <hr> <br>
 
     <h1 style ="text-align:center"> NEW ARRIVALS </h1> <br>
+    <img src ="boots.webp" width="300px">
+    <img src ="boots2.jpeg" width ="300px">
 
     <h1 style ="text-align:center"> WHAT'S HOT </h1>
 
