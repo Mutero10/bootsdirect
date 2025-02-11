@@ -20,7 +20,19 @@
 </head>
 <body class="bg-light">
 
-<!-- Banner slideshow --> 
+
+  <nav class="navbar navbar-dark bg-dark px-4">
+    <div class="container-fluid">
+      <span class="navbar-brand h1">WELCOME</span>
+      <div>
+        <a href="adidas.php" class="btn btn-outline-light me-2">Adidas</a>
+        <a href="nike.php" class="btn btn-outline-light me-2">Nike</a>
+        <a href="puma.php" class="btn btn-outline-light">Puma</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner slideshow --> 
 <div id="bannerSlideshow" class="slideshow slide" data-bs-ride="slideshow">
     <div class="slideshow-inner">
       <div class="slideshow-item active">
@@ -43,17 +55,6 @@
     </button>
   </div>
 
-
-  <nav class="navbar navbar-dark bg-dark px-4">
-    <div class="container-fluid">
-      <span class="navbar-brand h1">WELCOME</span>
-      <div>
-        <a href="adidas.php" class="btn btn-outline-light me-2">Adidas</a>
-        <a href="nike.php" class="btn btn-outline-light me-2">Nike</a>
-        <a href="puma.php" class="btn btn-outline-light">Puma</a>
-      </div>
-    </div>
-  </nav>
 
   <div class="container text-center mt-4">
     <!-- Popular Right Now -->
