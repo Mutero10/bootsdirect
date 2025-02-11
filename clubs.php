@@ -12,7 +12,7 @@
     .custom-img { width: 200px; height: auto; } 
     .slideshow-item img {
       width: 100%;
-      height: 500px; /* Adjust height as needed */
+      height: 100px; /* Adjust height as needed */
       object-fit: cover; /* Ensures images fill the space nicely */
     }
   </style>
@@ -33,25 +33,23 @@
   </nav>
 
   <!-- Banner slideshow --> 
-<div id="bannerSlideshow" class="slideshow slide" data-bs-ride="slideshow">
-    <div class="slideshow-inner">
-      <div class="slideshow-item active">
+  <div class="carousel-item active">
         <img src="banner1.jpg" class="d-block w-100" alt="Slide 1">
       </div>
-      <div class="slideshow-item">
+      <div class="carousel-item">
         <img src="banner2.jpg" class="d-block w-100" alt="Slide 2">
       </div>
-      <div class="slideshow-item">
+      <div class="carousel-item">
         <img src="banner3.jpg" class="d-block w-100" alt="Slide 3">
       </div>
     </div>
 
-  <!-- Slideshow Controls -->
-    <button class="slideshow-control-prev" type="button" data-bs-target="#bannerSlideshow" data-bs-slide="prev">
-      <span class="slideshow-control-prev-icon" aria-hidden="true"></span>
+    <!-- Slideshow Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#bannerSlideshow" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     </button>
-    <button class="slideshow-control-next" type="button" data-bs-target="#bannerSlideshow" data-bs-slide="next">
-      <span class="slideshow-control-next-icon" aria-hidden="true"></span>
+    <button class="carousel-control-next" type="button" data-bs-target="#bannerSlideshow" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </button>
   </div>
 
