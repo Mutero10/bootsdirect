@@ -10,6 +10,10 @@
   <style>
     .navbar { padding: 20px; } /* Makes the navbar thicker */
     .custom-img { width: 200px; height: auto; } 
+    .slideshow-item img {
+      width: 100%;
+      height: 500px; /* Adjust height as needed */
+      object-fit: cover; /* Ensures images fill the space nicely */
   </style>
 
 </head>
@@ -28,7 +32,7 @@
 
   <div class="container text-center mt-4">
     <!-- Popular Right Now -->
-    <h1 class="mb-4">POPULAR RIGHT NOW</h1>
+    <h1 class="mb-4">NEW ARRIVALS <hr> </h1>
     <div class="row justify-content-center mb-4">
       <div class="col-md-3">
         <img src="boots.webp" class="img-fluid rounded custom-img">
@@ -39,7 +43,7 @@
     </div>
 
     <!-- Latest Release -->
-    <h1 class="mb-4">LATEST RELEASE</h1>
+    <h1 class="mb-4">WHAT'S HOT <hr> </h1>
     <div class="row justify-content-center">
       <div class="col-md-3">
         <img src="boots3.avif" class="img-fluid rounded custom-img">
