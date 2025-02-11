@@ -40,7 +40,8 @@
 
           <!-- Products Grid -->
           <div class="row" id="productGrid">
-            <!-- Example Product Card -->
+
+          <!-- Example Product Card -->
             <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="120">
                 <div class="card h-100">
                     <img src="boots2.jpeg" class="card-img-top product-image" alt="Adidas Predator">
@@ -52,6 +53,30 @@
                 </div>
             </div>    
         </div>
+
+        <!-- Product 2 -->
+    <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="120">
+        <div class="card h-100">
+            <img src="boots3.avif" class="card-img-top product-image" alt="Adidas Predator">
+            <div class="card-body">
+                <h5 class="card-title">Nike</h5>
+                <p class="card-text">Ksh 6000</p>
+                <a href="#" class="btn btn-primary">View Details</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="120">
+        <div class="card h-100">
+            <img src="boots4.webp" class="card-img-top product-image" alt="Adidas Predator">
+            <div class="card-body">
+                <h5 class="card-title"> Nike </h5>
+                <p class="card-text">Ksh 5500</p>
+                <a href="#" class="btn btn-primary">View Details</a>
+            </div>
+        </div>
+    </div>
 
         <!-- Pagination -->
         <nav>
