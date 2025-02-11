@@ -34,6 +34,15 @@
       </div>
     </div>
 
+  <!-- Slideshow Controls -->
+    <button class="slideshow-control-prev" type="button" data-bs-target="#bannerSlideshow" data-bs-slide="prev">
+      <span class="slideshow-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="slideshow-control-next" type="button" data-bs-target="#bannerSlideshow" data-bs-slide="next">
+      <span class="slideshow-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+
 
   <nav class="navbar navbar-dark bg-dark px-4">
     <div class="container-fluid">
