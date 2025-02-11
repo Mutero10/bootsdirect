@@ -46,14 +46,28 @@
                     <img src="boot1.jpg" class="card-img-top product-image" alt="Adidas Predator">
                     <div class="card-body">
                         <h5 class="card-title">Adidas Predator</h5>
-                        <p class="card-text">$120</p>
+                        <p class="card-text">Ksh 5500</p>
                         <a href="#" class="btn btn-primary">View Details</a>
                     </div>
                 </div>
-            </div>
-            <!-- More product cards... -->
+            </div>    
         </div>
-        
+
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
 <h1 style ="text-align:center"> BEST OF ADIDAS </h1> <hr>
     
 </body>
