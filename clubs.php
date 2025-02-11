@@ -10,10 +10,19 @@
   <style>
     .navbar { padding: 20px; } /* Makes the navbar thicker */
     .custom-img { width: 200px; height: auto; } 
-    .slideshow-item img {
-      width: 100%;
-      height: 100px; /* Adjust height as needed */
-      object-fit: cover; /* Ensures images fill the space nicely */
+
+     /* Center the slideshow and resize images */
+     .carousel-container {
+      width: 50%; /* Adjust width as needed */
+      margin: auto;
+    }
+    .carousel-item img {
+      width: 100%; /* Keeps image responsive */
+      max-width: 400px; /* Prevents image from becoming too wide */
+      height: auto; /* Maintains aspect ratio */
+      object-fit: contain; /* Ensures the full image is visible */
+      display: block;
+      margin: auto; /* Centers the image */
     }
   </style>
 
@@ -32,25 +41,30 @@
     </div>
   </nav>
 
-  <!-- Banner slideshow --> 
-  <div class="carousel-item active">
-        <img src="banner1.jpg" class="d-block w-100" alt="Slide 1">
+  <!-- Bootstrap Slideshow -->
+  <div class="carousel-container">
+    <div id="bannerSlideshow" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="banner1.jpg" class="d-block" alt="Slide 1">
+        </div>
+        <div class="carousel-item">
+          <img src="banner2.jpg" class="d-block" alt="Slide 2">
+        </div>
+        <div class="carousel-item">
+          <img src="banner3.jpg" class="d-block" alt="Slide 3">
+        </div>
       </div>
-      <div class="carousel-item">
-        <img src="banner2.jpg" class="d-block w-100" alt="Slide 2">
-      </div>
-      <div class="carousel-item">
-        <img src="banner3.jpg" class="d-block w-100" alt="Slide 3">
-      </div>
+      
+      
+      <!-- Optional: Slideshow Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#bannerSlideshow" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#bannerSlideshow" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
     </div>
-
-    <!-- Slideshow Controls -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#bannerSlideshow" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#bannerSlideshow" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </button>
   </div>
 
 
