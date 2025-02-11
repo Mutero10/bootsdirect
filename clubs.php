@@ -62,6 +62,32 @@ body {
       position: relative;
       z-index: 1; /* Ensures it stays above the overlay */
     }
+
+    /* Bold, black headers */
+  h1 {
+    font-weight: bold;
+    color: black;
+  }
+
+  /* Adds hover effect to images */
+  .custom-img {
+    transition: 0.3s ease-in-out;
+    width: 100%; /* Ensures responsive images */
+    max-width: 250px; /* Adjust size */
+    height: auto; /* Keeps aspect ratio */
+  }
+
+  .image-container:hover .custom-img {
+    filter: brightness(85%); /* Light grey highlight */
+    transform: scale(1.05); /* Slight zoom effect */
+  }
+
+  /* Centers text below images */
+  .img-text {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
   </style>
 
 </head>
