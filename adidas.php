@@ -29,15 +29,31 @@
                 <div class="col-md-4">
                     <select id="priceFilter" class="form-control">
                         <option value="">All Prices</option>
-                        <option value="0-50">Under $50</option>
-                        <option value="50-100">$50 - $100</option>
-                        <option value="100-150">$100 - $150</option>
-                        <option value="150">Above $150</option>
+                        <option value="0-50">Under Ksh 50</option>
+                        <option value="50-100">Ksh50 - Ksh100</option>
+                        <option value="100-150">Ksh100 - Ksh150</option>
+                        <option value="150">Above Ksh150</option>
                     </select>
                 </div>
             </div>
         </div>
 
+          <!-- Products Grid -->
+          <div class="row" id="productGrid">
+            <!-- Example Product Card -->
+            <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="120">
+                <div class="card h-100">
+                    <img src="boot1.jpg" class="card-img-top product-image" alt="Adidas Predator">
+                    <div class="card-body">
+                        <h5 class="card-title">Adidas Predator</h5>
+                        <p class="card-text">$120</p>
+                        <a href="#" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- More product cards... -->
+        </div>
+        
 <h1 style ="text-align:center"> BEST OF ADIDAS </h1> <hr>
     
 </body>
