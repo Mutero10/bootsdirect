@@ -81,5 +81,12 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script> 
+  // Set interval to 5 seconds (5000ms)
+  let slideshowElement = document.querySelector('#bannerSlideshow');
+  let slideshow = new bootstrap.Carousel(slideshowElement, { interval: 5000 });
+  </script>
+
 </body>
 </html>
