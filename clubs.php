@@ -14,10 +14,26 @@
       width: 100%;
       height: 500px; /* Adjust height as needed */
       object-fit: cover; /* Ensures images fill the space nicely */
+    }
   </style>
 
 </head>
 <body class="bg-light">
+
+<!-- Banner slideshow --> 
+<div id="bannerSlideshow" class="slideshow slide" data-bs-ride="slideshow">
+    <div class="slideshow-inner">
+      <div class="slideshow-item active">
+        <img src="banner1.jpg" class="d-block w-100" alt="Slide 1">
+      </div>
+      <div class="slideshow-item">
+        <img src="banner2.jpg" class="d-block w-100" alt="Slide 2">
+      </div>
+      <div class="slideshow-item">
+        <img src="banner3.jpg" class="d-block w-100" alt="Slide 3">
+      </div>
+    </div>
+
 
   <nav class="navbar navbar-dark bg-dark px-4">
     <div class="container-fluid">
