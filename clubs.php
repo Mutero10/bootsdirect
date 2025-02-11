@@ -8,9 +8,20 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
-    .navbar { padding: 20px; } /* Makes the navbar thicker */
+    .navbar { padding: 20px; background-color:black } /* Makes the navbar thicker */
     .custom-img { width: 200px; height: auto; } 
 
+
+    /* Layout adjustments */
+    .slideshow-container {
+      display: flex;
+      flex-direction: column; /* Stacks items vertically */
+      align-items: center; /* Centers content horizontally */
+      justify-content: center;
+      height: 80vh; /* Makes sure the content is in the center of the screen */
+      position: relative;
+    }
+  
      /* Center the slideshow and resize images */
      .carousel-container {
       width: 50%; /* Adjust width as needed */
@@ -18,11 +29,38 @@
     }
     .carousel-item img {
       width: 100%; /* Keeps image responsive */
-      max-width: 400px; /* Prevents image from becoming too wide */
+      max-width: 450px; /* Prevents image from becoming too wide */
       height: auto; /* Maintains aspect ratio */
       object-fit: contain; /* Ensures the full image is visible */
       display: block;
       margin: auto; /* Centers the image */
+    }
+
+/* Background Image Styling */
+body {
+      background: url('back2.jpg') no-repeat center center fixed; /* Replace 'background.jpg' with your image */
+      background-size: cover; /* Ensures the image covers the whole screen */
+      height: 100%; /* Full screen height */
+      margin: 0; /* Removes default margins */
+      color: white; /* Ensures text is visible on dark images */
+      text-align: center;
+    }
+
+/* Optional: Add a slight dark overlay for better readability */
+.overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Adjust opacity */
+      z-index: -1; /* Keeps it behind content */
+    }
+
+    /* Centered text */
+    .content {
+      position: relative;
+      z-index: 1; /* Ensures it stays above the overlay */
     }
   </style>
 
@@ -32,7 +70,7 @@
 
   <nav class="navbar navbar-dark bg-dark px-4">
     <div class="container-fluid">
-      <span class="navbar-brand h1">WELCOME</span>
+      <span class="navbar-brand mx-auto text-center w-100 h1"> STEP UP YOUR GAME</span>
       <div>
         <a href="adidas.php" class="btn btn-outline-light me-2">Adidas</a>
         <a href="nike.php" class="btn btn-outline-light me-2">Nike</a>
@@ -48,12 +86,23 @@
         <div class="carousel-item active">
           <img src="banner1.jpg" class="d-block" alt="Slide 1">
         </div>
+
         <div class="carousel-item">
           <img src="banner2.jpg" class="d-block" alt="Slide 2">
         </div>
+
         <div class="carousel-item">
           <img src="banner3.jpg" class="d-block" alt="Slide 3">
         </div>
+
+        <div class="carousel-item">
+          <img src="banner4.jpg" class="d-block" alt="Slide 2">
+        </div>
+
+        <div class="carousel-item">
+          <img src="banner5.jpg" class="d-block" alt="Slide 2">
+        </div>
+
       </div>
       
       
@@ -70,27 +119,40 @@
 
   <div class="container text-center mt-4">
     <!-- Popular Right Now -->
-    <h1 class="mb-4">NEW ARRIVALS <hr> </h1>
+    <h1 class="mb-4 text-dark fw-bold">NEW ARRIVALS <hr> </h1>
     <div class="row justify-content-center mb-4">
       <div class="col-md-3">
-        <img src="boots.webp" class="img-fluid rounded custom-img">
+        <div class="image-container">
+          <img src="boots.webp" class="img-fluid rounded custom-img">
+          <p class="img-text">Adidas Predator 2024</p>
+        </div>
       </div>
       <div class="col-md-3">
-        <img src="boots2.jpeg" class="img-fluid rounded custom-img">
+        <div class="image-container">
+          <img src="boots2.jpeg" class="img-fluid rounded custom-img">
+          <p class="img-text">Nike Mercurial Superfly</p>
+        </div>
       </div>
     </div>
 
     <!-- Latest Release -->
-    <h1 class="mb-4">WHAT'S HOT <hr> </h1>
+    <h1 class="mb-4 text-dark fw-bold">WHAT'S HOT <hr> </h1>
     <div class="row justify-content-center">
       <div class="col-md-3">
-        <img src="boots3.avif" class="img-fluid rounded custom-img">
+        <div class="image-container">
+          <img src="boots3.avif" class="img-fluid rounded custom-img">
+          <p class="img-text">Puma Future Z</p>
+        </div>
       </div>
       <div class="col-md-3">
-        <img src="boots4.webp" class="img-fluid rounded custom-img">
+        <div class="image-container">
+          <img src="boots4.webp" class="img-fluid rounded custom-img">
+          <p class="img-text">New Balance Tekela</p>
+        </div>
       </div>
     </div>
-  </div>
+</div>
+
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
