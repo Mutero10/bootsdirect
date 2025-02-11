@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container mt-5">
-        <h1 class="text-center mb-4">Adidas Football Boots</h1>
+        <h1 class="text-center mb-4"> BEST OF ADIDAS <hr></h1> 
 
         <!-- Filter Section -->
         <div class="filter-section">
@@ -29,10 +29,10 @@
                 <div class="col-md-4">
                     <select id="priceFilter" class="form-control">
                         <option value="">All Prices</option>
-                        <option value="0-50">Under Ksh 50</option>
-                        <option value="50-100">Ksh50 - Ksh100</option>
-                        <option value="100-150">Ksh100 - Ksh150</option>
-                        <option value="150">Above Ksh150</option>
+                        <option value="0-50">Under Ksh 6500</option>
+                        <option value="50-100">Ksh 5000 - Ksh 6499</option>
+                        <option value="100-150">Ksh 4000 - Ksh 4999</option>
+                        <option value="150">Above Ksh 3500</option>
                     </select>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <!-- Example Product Card -->
             <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="120">
                 <div class="card h-100">
-                    <img src="boot1.jpg" class="card-img-top product-image" alt="Adidas Predator">
+                    <img src="boots2.jpeg" class="card-img-top product-image" alt="Adidas Predator">
                     <div class="card-body">
                         <h5 class="card-title">Adidas Predator</h5>
                         <p class="card-text">Ksh 5500</p>
@@ -53,6 +53,7 @@
             </div>    
         </div>
 
+        <!-- Pagination -->
         <nav>
             <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
@@ -68,7 +69,50 @@
         </nav>
     </div>
 
-<h1 style ="text-align:center"> BEST OF ADIDAS </h1> <hr>
+    <script>
+        // JavaScript for filtering and search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const typeFilter = document.getElementById('typeFilter');
+            const priceFilter = document.getElementById('priceFilter');
+            const productCards = document.querySelectorAll('.product-card');
+
+            function filterProducts() {
+                const searchText = searchInput.value.toLowerCase();
+                const selectedType = typeFilter.value;
+                const selectedPrice = priceFilter.value;
+
+                productCards.forEach(card => {
+                    const title = card.querySelector('.card-title').textContent.toLowerCase();
+                    const type = card.getAttribute('data-type');
+                    const price = parseFloat(card.getAttribute('data-price'));
+
+                    let isVisible = true;
+
+                    if (searchText && !title.includes(searchText)) {
+                        isVisible = false;
+                    }
+
+                    if (selectedType && type !== selectedType) {
+                        isVisible = false;
+                    }
+
+                    if (selectedPrice) {
+                        const [min, max] = selectedPrice.split('-').map(Number);
+                        if (price < min || (max && price > max)) {
+                            isVisible = false;
+                        }
+                    }
+
+                    card.style.display = isVisible ? 'block' : 'none';
+                });
+            }
+
+            searchInput.addEventListener('input', filterProducts);
+            typeFilter.addEventListener('change', filterProducts);
+            priceFilter.addEventListener('change', filterProducts);
+        });
+    </script>  
     
 </body>
 </html>
