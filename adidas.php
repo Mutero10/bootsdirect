@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Adidas</title>
+    <title> Adidas Football Boots</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 <body>
+<div class="container mt-5">
+        <h1 class="text-center mb-4">Adidas Football Boots</h1>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search boots...">
+                </div>
+                <div class="col-md-4">
+                    <select id="typeFilter" class="form-control">
+                        <option value="">All Types</option>
+                        <option value="firm-ground">Firm Ground</option>
+                        <option value="soft-ground">Soft Ground</option>
+                        <option value="artificial-grass">Artificial Grass</option>
+                        <option value="indoor">Indoor</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select id="priceFilter" class="form-control">
+                        <option value="">All Prices</option>
+                        <option value="0-50">Under $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100-150">$100 - $150</option>
+                        <option value="150">Above $150</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
 <h1 style ="text-align:center"> BEST OF ADIDAS </h1> <hr>
     

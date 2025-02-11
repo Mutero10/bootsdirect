@@ -87,6 +87,7 @@ body {
     margin-top: 8px;
     font-size: 16px;
     font-weight: bold;
+    color: black;
   }
   </style>
 
@@ -156,24 +157,26 @@ body {
       <div class="col-md-3">
         <div class="image-container">
           <img src="boots2.jpeg" class="img-fluid rounded custom-img">
-          <p class="img-text">Nike Mercurial Superfly</p>
+          <p class="img-text">Adidas Predator 2024</p>
         </div>
       </div>
     </div>
 
     <!-- Latest Release -->
+
     <h1 class="mb-4 text-dark fw-bold">WHAT'S HOT <hr> </h1>
     <div class="row justify-content-center">
       <div class="col-md-3">
         <div class="image-container">
           <img src="boots3.avif" class="img-fluid rounded custom-img">
-          <p class="img-text">Puma Future Z</p>
+          <p class="img-text">Nike</p>
         </div>
       </div>
+
       <div class="col-md-3">
         <div class="image-container">
           <img src="boots4.webp" class="img-fluid rounded custom-img">
-          <p class="img-text">New Balance Tekela</p>
+          <p class="img-text">Nike</p>
         </div>
       </div>
     </div>
