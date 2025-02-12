@@ -26,13 +26,13 @@
                         <option value="indoor">Indoor</option>
                     </select>
                 </div>
+
                 <div class="col-md-4">
                     <select id="priceFilter" class="form-control">
-                        <option value="">All Prices</option>
-                        <option value="0-50">Under Ksh 6500</option>
-                        <option value="50-100">Ksh 5000 - Ksh 6499</option>
-                        <option value="100-150">Ksh 4000 - Ksh 4999</option>
-                        <option value="150">Above Ksh 3500</option>
+                        <option value="all">All Prices</option>
+                        <option value="6000-6500">6000 - 6500</option>
+                        <option value="5000-5999">5000 - 5999</option>
+                        <option value="4000-4999">4000 - 4999</option>
                     </select>
                 </div>
             </div>
@@ -57,9 +57,9 @@
         <!-- Product 2 -->
     <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="120">
         <div class="card h-100">
-            <img src="boots3.avif" class="card-img-top product-image" alt="Adidas Predator">
+            <img src="Adidas2.avif" class="card-img-top product-image" alt="Adidas Predator">
             <div class="card-body">
-                <h5 class="card-title">Nike</h5>
+                <h5 class="card-title"> Adidas F50</h5>
                 <p class="card-text">Ksh 6000</p>
                 <a href="#" class="btn btn-primary">View Details</a>
             </div>
@@ -69,9 +69,9 @@
     <!-- Product 3 -->
     <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="120">
         <div class="card h-100">
-            <img src="boots4.webp" class="card-img-top product-image" alt="Adidas Predator">
+            <img src="Adidas1.avif" class="card-img-top product-image" alt="Adidas Predator">
             <div class="card-body">
-                <h5 class="card-title"> Nike </h5>
+                <h5 class="card-title"> Adidas </h5>
                 <p class="card-text">Ksh 5500</p>
                 <a href="#" class="btn btn-primary">View Details</a>
             </div>
@@ -96,47 +96,59 @@
 
     <script>
         // JavaScript for filtering and search functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
-            const typeFilter = document.getElementById('typeFilter');
-            const priceFilter = document.getElementById('priceFilter');
-            const productCards = document.querySelectorAll('.product-card');
+        document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const typeFilter = document.getElementById('typeFilter');
+    const priceFilter = document.getElementById('priceFilter');
+    const productCards = document.querySelectorAll('.product-card');
 
-            function filterProducts() {
-                const searchText = searchInput.value.toLowerCase();
-                const selectedType = typeFilter.value;
-                const selectedPrice = priceFilter.value;
+    function filterProducts() {
+        const searchText = searchInput.value.toLowerCase();
+        const selectedType = typeFilter ? typeFilter.value : "all"; // Handle cases where typeFilter is missing
+        const selectedPrice = priceFilter.value;
 
-                productCards.forEach(card => {
-                    const title = card.querySelector('.card-title').textContent.toLowerCase();
-                    const type = card.getAttribute('data-type');
-                    const price = parseFloat(card.getAttribute('data-price'));
+        productCards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            const type = card.getAttribute('data-type');
+            const price = parseFloat(card.getAttribute('data-price')); // Ensure proper number conversion
 
-                    let isVisible = true;
+            let isVisible = true;
 
-                    if (searchText && !title.includes(searchText)) {
-                        isVisible = false;
-                    }
-
-                    if (selectedType && type !== selectedType) {
-                        isVisible = false;
-                    }
-
-                    if (selectedPrice) {
-                        const [min, max] = selectedPrice.split('-').map(Number);
-                        if (price < min || (max && price > max)) {
-                            isVisible = false;
-                        }
-                    }
-
-                    card.style.display = isVisible ? 'block' : 'none';
-                });
+            // 🔍 **Search filter**
+            if (searchText && !title.includes(searchText)) {
+                isVisible = false;
             }
 
-            searchInput.addEventListener('input', filterProducts);
-            typeFilter.addEventListener('change', filterProducts);
-            priceFilter.addEventListener('change', filterProducts);
+            // 🔍 **Type filter**
+            if (selectedType && selectedType !== "all" && type !== selectedType) {
+                isVisible = false;
+            }
+
+            // 🔍 **Price filter (NOW FIXED)**
+            if (selectedPrice !== "all") {
+                const priceRange = selectedPrice.split('-').map(num => parseInt(num.trim(), 10));
+
+                if (priceRange.length === 2) {
+                    const min = priceRange[0];
+                    const max = priceRange[1];
+
+                    if (isNaN(price) || price < min || price > max) {
+                        isVisible = false;
+                    }
+                }
+            }
+
+            // ✅ **Apply final visibility**
+            card.style.display = isVisible ? 'block' : 'none';
         });
+    }
+
+    // ✅ **Event Listeners**
+    searchInput.addEventListener('input', filterProducts);
+    typeFilter.addEventListener('change', filterProducts);
+    priceFilter.addEventListener('change', filterProducts);
+});
+
     </script>  
     
 </body>
