@@ -42,7 +42,7 @@
           <div class="row" id="productGrid">
 
           <!-- Example Product Card -->
-            <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="120">
+            <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="5500">
                 <div class="card h-100">
                     <img src="boots2.jpeg" class="card-img-top product-image" alt="Adidas Predator">
                     <div class="card-body">
@@ -55,7 +55,7 @@
         </div>
 
         <!-- Product 2 -->
-    <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="120">
+    <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="6000">
         <div class="card h-100">
             <img src="Adidas2.avif" class="card-img-top product-image" alt="Adidas Predator">
             <div class="card-body">
@@ -67,7 +67,7 @@
     </div>
 
     <!-- Product 3 -->
-    <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="120">
+    <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="5500">
         <div class="card h-100">
             <img src="Adidas1.avif" class="card-img-top product-image" alt="Adidas Predator">
             <div class="card-body">
