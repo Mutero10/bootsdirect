@@ -37,68 +37,7 @@
                 </div>
             </div>
         </div>
-
-          <!-- Products Grid -->
-          <div class="row" id="productGrid">
-
-          <!--  Product Card -->
-            <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="5500">
-                <div class="card h-100">
-                    <img src="boots2.jpeg" class="card-img-top product-image" alt="Adidas Predator">
-                    <div class="card-body">
-                        <h5 class="card-title">Adidas Predator</h5>
-                        <p class="card-text">Ksh 5500</p>
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>    
-        </div>
-
-        <!-- Product 2 -->
-    <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="6000">
-        <div class="card h-100">
-            <img src="Adidas2.avif" class="card-img-top product-image" alt="Adidas Predator">
-            <div class="card-body">
-                <h5 class="card-title"> Adidas F50</h5>
-                <p class="card-text">Ksh 6000</p>
-                <a href="#" class="btn btn-primary">View Details</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product 3 -->
-    <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="5500">
-        <div class="card h-100">
-            <img src="Adidas1.avif" class="card-img-top product-image" alt="Adidas Predator">
-            <div class="card-body">
-                <h5 class="card-title"> Adidas </h5>
-                <p class="card-text">Ksh 5500</p>
-                <a href="#" class="btn btn-primary">View Details</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="4500">
-        <div class="card h-100">
-            <img src="Adidas3.avif" class="card-img-top product-image" alt="Adidas Predator">
-            <div class="card-body">
-                <h5 class="card-title"> Adidas Predator 2023</h5>
-                <p class="card-text">Ksh 4500</p>
-                <a href="#" class="btn btn-primary">View Details</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4 mb-4 product-card" data-type="firm-ground" data-price="5000">
-        <div class="card h-100">
-            <img src="Adidas2.avif" class="card-img-top product-image" alt="Adidas Predator">
-            <div class="card-body">
-                <h5 class="card-title"> Adidas F50</h5>
-                <p class="card-text">Ksh 5000</p>
-                <a href="#" class="btn btn-primary">View Details</a>
-            </div>
-        </div>
-    </div>
+          
 
         <!-- Pagination -->
         <nav>
