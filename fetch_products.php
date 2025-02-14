@@ -1,17 +1,29 @@
 <?php
 include 'products.php'; 
 
-$sql = "SELECT id, name, image, price FROM products";
-$result = $conn->query($sql);
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+$priceRange = isset($_GET['price']) ? $_GET['price'] : '';
 
-$products = [];
+$sql = "SELECT id, name, image, price FROM products WHERE 1";
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $products[] = $row;
-    }
+// Apply search filter
+if (!empty($searchQuery)) {
+    $sql .= " AND name LIKE '%" . $conn->real_escape_string($searchQuery) . "%'";
 }
 
-echo json_encode($products); // Convert data to JSON format for frontend use
+// Apply price filter
+if (!empty($priceRange)) {
+    list($minPrice, $maxPrice) = explode('-', $priceRange);
+    $sql .= " AND price BETWEEN $minPrice AND $maxPrice";
+}
+
+$result = $conn->query($sql);
+$products = [];
+
+while ($row = $result->fetch_assoc()) {
+    $products[] = $row;
+}
+
+echo json_encode($products);
 $conn->close();
 ?>
