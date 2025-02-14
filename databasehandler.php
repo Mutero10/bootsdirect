@@ -46,17 +46,18 @@ class DatabaseHandler {
         }
     }
 
-    // Fetch all products from the database
-    public function getProducts() {
+    // Fetch Adidas data from the database
+    public function getAdidasProducts() {
         $sql = "SELECT * FROM products"; 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     // Fetch Puma data from the database
     public function getPumaProducts() {
-        $sql = "SELECT name, type, price, image FROM puma"; // Ensure table and columns exist
+        $sql = "SELECT name, type, price, image FROM puma"; 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

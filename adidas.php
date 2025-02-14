@@ -11,6 +11,13 @@
 <div class="container mt-5">
         <h1 class="text-center mb-4"> BEST OF ADIDAS <hr></h1> 
 
+        <nav>
+    <ul>
+        <li><a href="products.php?brand=adidas">Adidas Products</a></li>
+        <li><a href="products.php?brand=puma">Puma Products</a></li>
+    </ul>
+</nav>
+
 <!-- Filter Section -->
     <div class="filter-section">
     <div class="row">
