@@ -5,7 +5,7 @@ $db = new DatabaseHandler();
 $products = $db->getProducts();
 $pumaProducts = $db->getPumaProducts(); 
 
-
+// Adidas products
 if (!empty($products)) {
     foreach ($products as $row) {
         echo '
@@ -24,6 +24,7 @@ if (!empty($products)) {
     echo "<p>No products found.</p>";
 }
 
+// Puma products
 if (!empty($pumaProducts)) {
     foreach ($pumaProducts as $row) {
         echo '

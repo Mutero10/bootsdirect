@@ -56,7 +56,7 @@ class DatabaseHandler {
 
     // Fetch Puma data from the database
     public function getPumaProducts() {
-        $sql = "SELECT name, type, price, image FROM products"; // Ensure table and columns exist
+        $sql = "SELECT name, type, price, image FROM puma"; // Ensure table and columns exist
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
