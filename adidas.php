@@ -116,7 +116,28 @@
         </nav>
     </div>
 
+    <div id="productContainer" class="row"></div>
+
+
     <script>
+         fetch('fetch_products.php')
+        .then(response => response.json())
+        .then(data => {
+            let container = document.getElementById('productContainer');
+            container.innerHTML = data.map(product => `
+                <div class="col-md-4 mb-4 product-card">
+                    <div class="card h-100">
+                        <img src="images/${product.image}" class="card-img-top" alt="${product.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">Ksh ${product.price}</p>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        })
+        .catch(error => console.error('Error:', error));
 
     // JavaScript for filtering and search functionality
     document.addEventListener('DOMContentLoaded', function () {
@@ -124,24 +145,29 @@
     const typeFilter = document.getElementById('typeFilter');
     const priceFilter = document.getElementById('priceFilter');
     const productCards = document.querySelectorAll('.product-card');
+
     function filterProducts() {
         const searchText = searchInput.value.toLowerCase();
         const selectedType = typeFilter ? typeFilter.value : "all"; // Handle cases where typeFilter is missing
         const selectedPrice = priceFilter.value;
+
         productCards.forEach(card => {
             const title = card.querySelector('.card-title').textContent.toLowerCase();
             const type = card.getAttribute('data-type');
             const price = parseFloat(card.getAttribute('data-price')); // Ensure proper number conversion
             let isVisible = true;
-            // 🔍 **Search filter**
+
+            // Search filter
             if (searchText && !title.includes(searchText)) {
                 isVisible = false;
             }
-            // 🔍 **Type filter**
+
+            // Type filter
             if (selectedType && selectedType !== "all" && type !== selectedType) {
                 isVisible = false;
             }
-            // 🔍 **Price filter (NOW FIXED)**
+
+            // Price filter 
             if (selectedPrice !== "all") {
                 const priceRange = selectedPrice.split('-').map(num => parseInt(num.trim(), 10));
                 if (priceRange.length === 2) {
@@ -152,11 +178,12 @@
                     }
                 }
             }
-            // ✅ **Apply final visibility**
+
+            // Apply final visibility
             card.style.display = isVisible ? 'block' : 'none';
         });
     }
-    // ✅ **Event Listeners**
+    // Event Listeners
     searchInput.addEventListener('input', filterProducts);
     typeFilter.addEventListener('change', filterProducts);
     priceFilter.addEventListener('change', filterProducts);
