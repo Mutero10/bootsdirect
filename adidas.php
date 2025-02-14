@@ -15,7 +15,7 @@
         <div class="filter-section">
             <div class="row">
                 <div class="col-md-4">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search boots...">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search boots...">
                 </div>
                 <div class="col-md-4">
                     <select id="typeFilter" class="form-control">
@@ -138,6 +138,33 @@
             `).join('');
         })
         .catch(error => console.error('Error:', error));
+
+        document.getElementById('searchInput').addEventListener('input', fetchProducts);
+document.getElementById('priceFilter').addEventListener('change', fetchProducts);
+
+function fetchProducts() {
+    let search = document.getElementById('searchInput').value;
+    let price = document.getElementById('priceFilter').value;
+    
+    fetch(`fetch_products.php?search=${search}&price=${price}`)
+        .then(response => response.json())
+        .then(data => {
+            let container = document.getElementById('productContainer');
+            container.innerHTML = data.map(product => `
+                <div class="col-md-4 mb-4 product-card">
+                    <div class="card h-100">
+                        <img src="images/${product.image}" class="card-img-top" alt="${product.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">Ksh ${product.price}</p>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        })
+        .catch(error => console.error('Error:', error));
+}
 
     // JavaScript for filtering and search functionality
     document.addEventListener('DOMContentLoaded', function () {
