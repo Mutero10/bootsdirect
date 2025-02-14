@@ -38,6 +38,10 @@
             </div>
         </div>
           
+    <div class="row" id="productGrid">
+      <?php include 'products.php'; ?>
+    </div>
+
 
         <!-- Pagination -->
         <nav>
