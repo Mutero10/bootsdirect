@@ -54,7 +54,14 @@ class DatabaseHandler {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    
+    // Fetch Puma data from the database
+    public function getPumaProducts() {
+        $sql = "SELECT name, type, price, image FROM products"; // Ensure table and columns exist
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     // Method to store the reset token
     public function storeResetToken($email, $token, $expiry) {
