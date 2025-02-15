@@ -88,5 +88,57 @@ function fetchProducts() {
         })
         .catch(error => console.error('Error:', error));
 }
+
+// JavaScript for filtering and search functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const typeFilter = document.getElementById('typeFilter');
+    const priceFilter = document.getElementById('priceFilter');
+    const productCards = document.querySelectorAll('.product-card');
+
+    function filterProducts() {
+        const searchText = searchInput.value.toLowerCase();
+        const selectedType = typeFilter ? typeFilter.value : "all"; // Handle cases where typeFilter is missing
+        const selectedPrice = priceFilter.value;
+
+    productCards.forEach(card => {
+        const title = card.querySelector('.card-title').textContent.toLowerCase();
+        const type = card.getAttribute('data-type');
+        const price = parseFloat(card.getAttribute('data-price')); // Ensure proper number conversion
+        let isVisible = true;
+
+    // Search filter
+        if (searchText && !title.includes(searchText)) {
+            isVisible = false;
+            }
+
+    // Type filter
+        if (selectedType && selectedType !== "all" && type !== selectedType) {
+            isVisible = false;
+            }
+
+    // Price filter 
+        if (selectedPrice !== "all") {
+            const priceRange = selectedPrice.split('-').map(num => parseInt(num.trim(), 10));
+            if (priceRange.length === 2) {
+                const min = priceRange[0];
+                const max = priceRange[1];
+                if (isNaN(price) || price < min || price > max) {
+                        isVisible = false;
+                    }
+                }
+            }
+
+    // Apply final visibility
+        card.style.display = isVisible ? 'block' : 'none';
+        });
+    }
+
+    // Event Listeners
+        searchInput.addEventListener('input', filterProducts);
+        typeFilter.addEventListener('change', filterProducts);
+        priceFilter.addEventListener('change', filterProducts);
+});
+
 </body>
 </html>
