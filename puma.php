@@ -38,7 +38,7 @@
         </div>
           
     <div class="row" id="productGrid">
-      <?php include 'products.php'; ?>
+      <?php include 'fetch_puma.php'; ?>
     </div>
 
     
