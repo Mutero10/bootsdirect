@@ -52,8 +52,7 @@ class DatabaseHandler {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
+    }  
 
     // Fetch Puma data from the database
     public function getPumaProducts() {
@@ -63,7 +62,14 @@ class DatabaseHandler {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
+    // Fetch Adidas product details by ID
+    public function getProductById($id) {
+        $sql = "SELECT * FROM products WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["id" => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
     // Method to store the reset token
     public function storeResetToken($email, $token, $expiry) {
         $stmt = $this->conn->prepare("UPDATE users SET reset_token = ?, token_expiry = ? WHERE email = ?");

@@ -11,6 +11,8 @@
 <div class="container mt-5">
         <h1 class="text-center mb-4"> BEST OF ADIDAS <hr></h1> 
 
+        <a href="cart.php" class="btn btn-warning">View Cart</a>
+
 
 <!-- Filter Section -->
     <div class="filter-section">
@@ -161,29 +163,26 @@ function fetchProducts() {
 });
 
     //Javascript function to handle "Add to cart" actions
-    document.addEventListener('DOMContentLoaded', function() {
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    document.addEventListener("DOMContentLoaded", function () {
+    // Attach click event listener to all 'Add to Cart' buttons
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", function () {
+            let productId = this.getAttribute("data-id");
 
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const productId = this.getAttribute('data-id');
-
-            fetch('add_to_cart.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id: productId }),
+            fetch("add_to_cart.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "id=" + productId
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Product added to cart successfully!');
+                    alert("Product added to cart!");
                 } else {
-                    alert('Failed to add product to cart.');
+                    alert("Failed to add product to cart.");
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error("Error:", error));
         });
     });
 });
