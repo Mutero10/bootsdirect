@@ -2,31 +2,31 @@
 session_start();
 include 'databasehandler.php';
 
-$data = json_decode(file_get_contents('php://input'), true);
-$productId = $data['id'];
+// Check if request method is POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$db = new DatabaseHandler();
-$product = $db->getProductById($productId);
-
-if ($product) {
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
+    //  Check if "id" is received
+    if (!isset($_POST["id"])) {
+        echo json_encode(["success" => false, "message" => "Product ID not received"]);
+        exit;
     }
 
-    if (isset($_SESSION['cart'][$productId])) {
-        $_SESSION['cart'][$productId]['quantity'] += 1;
-    } else {
-        $_SESSION['cart'][$productId] = [
-            'id' => $product['id'],
-            'name' => $product['name'],
-            'price' => $product['price'],
-            'image' => $product['image'],
-            'quantity' => 1,
-        ];
+    $productId = $_POST["id"];
+
+    // Display received ID
+    error_log("Product ID received: " . $productId);
+
+    // Initialize the cart if it doesn't exist
+    if (!isset($_SESSION["cart"])) {
+        $_SESSION["cart"] = [];
     }
 
-    echo json_encode(['success' => true]);
+    // Add product ID to the cart session
+    $_SESSION["cart"][] = $productId;
+
+    echo json_encode(["success" => true, "message" => "Product added"]);
+    exit;
 } else {
-    echo json_encode(['success' => false]);
+    echo json_encode(["success" => false, "message" => "Invalid request"]);
 }
 ?>
