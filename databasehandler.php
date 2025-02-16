@@ -64,10 +64,11 @@ class DatabaseHandler {
 
     // Fetch Adidas product details by ID
     public function getProductById($id) {
-        $sql = "SELECT * FROM products WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(["id" => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->conn->prepare("SELECT * FROM products WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
     
     // Method to store the reset token
