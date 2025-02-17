@@ -20,6 +20,7 @@ $totalPrice = array_sum(array_column($cartItems, 'price'));
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+
     <div class="container mt-5">
         <h2>Checkout</h2>
         <ul class="list-group">
@@ -32,21 +33,29 @@ $totalPrice = array_sum(array_column($cartItems, 'price'));
         <h4 class="mt-3">Total: Ksh <?= $totalPrice ?></h4>
 
         <!-- Payment Form -->
-        <form action="process_payment.php" method="POST">
-            <input type="hidden" name="total" value="<?= $totalPrice ?>">
+        <form action="verify_payment.php" method="POST">
 
-            <div class="form-group mt-3">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" class="form-control" required>
-            </div>
+    <!-- M-Pesa Payment Instructions -->
+    <div class="alert alert-info mt-3">
+        <strong>Pay via M-Pesa:</strong>
+        <ul>
+            <li>Go to <strong>M-Pesa > Lipa na M-Pesa</strong></li>
+            <li>Enter Paybill: <strong>123456</strong></li>
+            <li>Enter Account No: <strong>YourName</strong></li>
+            <li>Enter Amount: <strong>Ksh <?= $totalPrice ?></strong></li>
+            <li>Confirm and Send</li>
+        </ul>
+        <p><strong>After payment, enter the M-Pesa transaction code below:</strong></p>
+    </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" class="form-control" required>
-            </div>
+    <div class="form-group">
+        <label for="mpesa_code">M-Pesa Transaction Code</label>
+        <input type="text" id="mpesa_code" name="mpesa_code" class="form-control" required>
+    </div>
 
-            <button type="submit" class="btn btn-success">Pay Now</button>
-        </form>
+    <button type="submit" class="btn btn-success">Confirm Payment</button>
+</form>
+
     </div>
 </body>
 </html>
