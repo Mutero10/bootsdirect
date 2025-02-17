@@ -39,7 +39,7 @@ $cartItems = $_SESSION["cart"]; // Use session data directly
         ?>
     </ul>
 
-    <button id="checkoutBtn" class="btn btn-primary">Proceed to Checkout</button>
+    <a href="checkout.php" class="btn btn-primary">Proceed to Checkout</a>
 
     <script>
         // Checkout button functionality
