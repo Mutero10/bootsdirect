@@ -45,71 +45,10 @@
       <?php include 'fetch_adidas.php'; ?>
     </div>
 
-    <!-- Pagination -->
-    <nav>
-    <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-           <a class="page-link" href="#">Next</a>
-        </li>
-     </ul>
-    </nav>
-    </div>
-
-    <div id="productContainer" class="row"></div>
-
 
     <script>
-        fetch('fetch_products.php')
-        .then(response => response.json())
-        .then(data => {
-            let container = document.getElementById('productContainer');
-            container.innerHTML = data.map(product => `
-                <div class="col-md-4 mb-4 product-card">
-                <div class="card h-100">
-                    <img src="images/${product.image}" class="card-img-top" alt="${product.name}">
-                    <div class="card-body">
-                        <h5 class="card-title">${product.name}</h5>
-                        <p class="card-text">Ksh ${product.price}</p>
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>
-            `).join('');
-        })
-        .catch(error => console.error('Error:', error));
 
-    document.getElementById('searchInput').addEventListener('input', fetchProducts);
-    document.getElementById('priceFilter').addEventListener('change', fetchProducts);
 
-function fetchProducts() {
-    let search = document.getElementById('searchInput').value;
-    let price = document.getElementById('priceFilter').value;
-    
-    fetch(`fetch_products.php?search=${search}&price=${price}`)
-        .then(response => response.json())
-        .then(data => {
-            let container = document.getElementById('productContainer');
-            container.innerHTML = data.map(product => `
-                <div class="col-md-4 mb-4 product-card">
-                <div class="card h-100">
-                    <img src="images/${product.image}" class="card-img-top" alt="${product.name}">
-                    <div class="card-body">
-                        <h5 class="card-title">${product.name}</h5>
-                        <p class="card-text">Ksh ${product.price}</p>
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-                </div>
-            `).join('');
-        })
-        .catch(error => console.error('Error:', error));
-}
 
 // JavaScript for filtering and search functionality
     document.addEventListener('DOMContentLoaded', function () {
@@ -160,31 +99,6 @@ function fetchProducts() {
         searchInput.addEventListener('input', filterProducts);
         typeFilter.addEventListener('change', filterProducts);
         priceFilter.addEventListener('change', filterProducts);
-});
-
-    //Javascript function to handle "Add to cart" actions
-    document.addEventListener("DOMContentLoaded", function () {
-    // Attach click event listener to all 'Add to Cart' buttons
-    document.querySelectorAll(".add-to-cart").forEach(button => {
-        button.addEventListener("click", function () {
-            let productId = this.getAttribute("data-id");
-
-            fetch("add_to_cart.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: "id=" + productId
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert("Product added to cart!");
-                } else {
-                    alert("Failed to add product to cart.");
-                }
-            })
-            .catch(error => console.error("Error:", error));
-        });
-    });
 });
 
 

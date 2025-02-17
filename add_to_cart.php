@@ -1,41 +1,58 @@
 <?php
+
 session_start();
-include 'databasehandler.php';
 
-$db = new DatabaseHandler();
+// Get the raw POST data
+$input = json_decode(file_get_contents('php://input'), true);
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["id"])) {
-    $productId = $_POST["id"];
-    $product = $db->getProductById($productId);
+if (isset($input['product_id'])) {
+    $product_id = $input['product_id'];
 
-    if ($product) {
-        // Initialize cart if not set
-        if (!isset($_SESSION["cart"])) {
-            $_SESSION["cart"] = [];
-        }
-
-        // Check if the product is already in the cart
-        $found = false;
-        foreach ($_SESSION["cart"] as &$item) {
-            if ($item["id"] == $productId) {
-                $item["quantity"] += 1; // Increase quantity
-                $found = true;
-                break;
-            }
-        }
-
-        // If not found, add a new product with quantity
-        if (!$found) {
-            $product["quantity"] = 1;
-            $_SESSION["cart"][] = $product;
-        }
-
-        echo json_encode(["success" => true]);
-        exit;
+    // Add the product to the cart (session-based in this case)
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
     }
+
+    // Add the product to the session cart
+    $_SESSION['cart'][] = $product_id;
+
+    // Send a success response
+    echo json_encode(['success' => true, 'message' => 'Product added to cart']);
+} else {
+    // No product_id received in the request
+    echo json_encode(['success' => false, 'error' => 'Product ID not provided']);
 }
-
-echo json_encode(["success" => false, "message" => "Product not found"]);
-exit;
-
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <ul id="cartItems"></ul>
+
+    <button id="checkoutBtn">Proceed to Checkout</button>
+
+    <script>
+        const cartItemsList = document.getElementById('cartItems');
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - $${item.price}`;
+            cartItemsList.appendChild(li);
+        });
+
+        document.getElementById('checkoutBtn').addEventListener('click', function() {
+            if (cart.length > 0) {
+                window.location.href = '/checkout.html';  // redirect to checkout page
+            } else {
+                alert('Your cart is empty!');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -10,35 +10,8 @@ if (!isset($_SESSION["cart"]) || empty($_SESSION["cart"])) {
     exit;
 }
 
-// Get product details from the database
-$cartItems = [];
-foreach ($_SESSION["cart"] as $productId) {
-    $product = $db->getProductById($productId); // Fetch product details
-    if ($product) {
-        $cartItems[] = $product;
-    }
-}
+$cartItems = $_SESSION["cart"]; // Use session data directly
 
-// Display cart items
-if (!empty($cartItems)) {
-    echo "<h2>Your Cart</h2><div class='row'>";
-    foreach ($cartItems as $item) {
-        echo '
-        <div class="col-md-4 mb-4 product-card">
-            <div class="card h-100">
-                <img src="images/' . htmlspecialchars($item["image"]) . '" class="card-img-top" alt="' . htmlspecialchars($item["name"]) . '">
-                <div class="card-body">
-                    <h5 class="card-title">' . htmlspecialchars($item["name"]) . '</h5>
-                    <p class="card-text">Ksh ' . htmlspecialchars($item["price"]) . '</p>
-                    <button class="btn btn-danger remove-item" data-id="' . $item["id"] . '">Remove</button>
-                </div>
-            </div>
-        </div>';
-    }
-    echo "</div>";
-} else {
-    echo "<p>Your cart is empty.</p>";
-}
 ?>
 
 <!DOCTYPE html>
