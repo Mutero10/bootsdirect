@@ -32,30 +32,21 @@ $totalPrice = array_sum(array_column($cartItems, 'price'));
         </ul>
         <h4 class="mt-3">Total: Ksh <?= $totalPrice ?></h4>
 
-        <!-- Payment Form -->
-        <form action="verify_payment.php" method="POST">
+        <!-- Order Form -->
+        <form action="send_order.php" method="POST">
 
-    <!-- M-Pesa Payment Instructions -->
-    <div class="alert alert-info mt-3">
-        <strong>Pay via M-Pesa:</strong>
-        <ul>
-            <li>Go to <strong>M-Pesa > Lipa na M-Pesa</strong></li>
-            <li>Enter Paybill: <strong>123456</strong></li>
-            <li>Enter Account No: <strong>YourName</strong></li>
-            <li>Enter Amount: <strong>Ksh <?= $totalPrice ?></strong></li>
-            <li>Confirm and Send</li>
-        </ul>
-        <p><strong>After payment, enter the M-Pesa transaction code below:</strong></p>
-    </div>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
 
-    <div class="form-group">
-        <label for="mpesa_code">M-Pesa Transaction Code</label>
-        <input type="text" id="mpesa_code" name="mpesa_code" class="form-control" required>
-    </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
 
-    <button type="submit" class="btn btn-success">Confirm Payment</button>
-</form>
-
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
     </div>
 </body>
 </html>
