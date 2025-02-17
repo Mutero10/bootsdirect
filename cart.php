@@ -18,60 +18,34 @@ $cartItems = $_SESSION["cart"]; // Use session data directly
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shopping Cart</title>
-    <!-- Include your CSS and JS files here -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <!-- Add Bootstrap CSS link for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Your Shopping Cart</h1>
-    <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])): ?>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($_SESSION['cart'] as $item): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($item['name']); ?></td>
-                        <td>Ksh <?php echo htmlspecialchars($item['price']); ?></td>
-                        <td><?php echo htmlspecialchars($item['quantity']); ?></td>
-                        <td>Ksh <?php echo htmlspecialchars($item['price'] * $item['quantity']); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <a href="checkout.php" class="btn btn-success">Proceed to Checkout</a>
-    <?php else: ?>
-        <p>Your cart is empty.</p>
-    <?php endif; ?>
+    <h1>Your Cart</h1>
+    <ul id="cartItems" class="list-group">
+        <?php
+        // Loop through the session cart items and display them
+        foreach ($cartItems as $item) {
+            echo '
+                <li class="list-group-item">
+                    <strong>' . htmlspecialchars($item['name']) . '</strong><br>
+                    Price: Ksh ' . htmlspecialchars($item['price']) . '
+                </li>
+            ';
+        }
+        ?>
+    </ul>
+
+    <button id="checkoutBtn" class="btn btn-primary">Proceed to Checkout</button>
 
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".remove-item").forEach(button => {
-        button.addEventListener("click", function () {
-            let productId = this.getAttribute("data-id");
-
-            fetch("remove_from_cart.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: "id=" + productId
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload(); // Refresh cart page
-                } else {
-                    alert("Failed to remove item: " + data.message);
-                }
-            })
-            .catch(error => console.error("Error:", error));
+        // Checkout button functionality
+        document.getElementById('checkoutBtn').addEventListener('click', function() {
+            window.location.href = '/checkout.html';  // redirect to checkout page
         });
-    });
-});
-</script>
+    </script>
 </body>
 </html>

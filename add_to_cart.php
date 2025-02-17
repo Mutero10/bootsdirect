@@ -5,22 +5,24 @@ session_start();
 // Get the raw POST data
 $input = json_decode(file_get_contents('php://input'), true);
 
-if (isset($input['product_id'])) {
-    $product_id = $input['product_id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get the data from the POST request
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
 
-    // Add the product to the cart (session-based in this case)
+    // Prepare the product to be added to the cart
+    $product = array('id' => $id, 'name' => $name, 'price' => $price);
+
+    // Initialize the cart if it doesn't exist
     if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
+        $_SESSION['cart'] = array(); // Initialize the cart if it's empty
     }
 
     // Add the product to the session cart
-    $_SESSION['cart'][] = $product_id;
+    $_SESSION['cart'][] = $product;
 
-    // Send a success response
-    echo json_encode(['success' => true, 'message' => 'Product added to cart']);
-} else {
-    // No product_id received in the request
-    echo json_encode(['success' => false, 'error' => 'Product ID not provided']);
+    echo 'Product added to cart'; // Optional message to confirm
 }
 ?>
 <!DOCTYPE html>

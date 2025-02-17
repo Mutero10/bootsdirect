@@ -29,27 +29,28 @@ if (!empty($products)) {
 ?>
 
 <script>
-    // Add event listeners for all the Add to Cart buttons
     document.querySelectorAll('.add-to-cart').forEach(function(button) {
-        button.addEventListener('click', function() {
-            const product = {
-                id: this.getAttribute('data-id'),
-                name: this.getAttribute('data-name'),
-                price: parseFloat(this.getAttribute('data-price'))
-            };
+    button.addEventListener('click', function() {
+        const product = {
+            id: this.getAttribute('data-id'),
+            name: this.getAttribute('data-name'),
+            price: this.getAttribute('data-price')
+        };
 
-            // Get the current cart from localStorage, or initialize an empty array
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            // Add the new product to the cart
-            cart.push(product);
-
-            // Save the updated cart back to localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            // Notify the user that the product was added
+        // Send product details to PHP to store in session
+        fetch('add_to_cart.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `id=${product.id}&name=${encodeURIComponent(product.name)}&price=${product.price}`
+        })
+        .then(response => response.text())
+        .then(data => {
             alert(product.name + ' has been added to your cart!');
-        });
+            console.log(data); // Debugging response from PHP
+        })
+        .catch(error => console.error('Error:', error));
     });
+});
+
 </script>
 
