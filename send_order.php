@@ -1,37 +1,62 @@
 <?php
 session_start();
 
-// Ensure there is a cart
+// Ensure cart exists
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    echo "Your cart is empty!";
-    exit;
+    die("Your cart is empty!");
 }
 
-// Collect user info and cart data
-$userName = $_POST['name'];
-$userEmail = $_POST['email'];
+// Collect user input
+$userName = $_POST['name'] ?? '';
+$userEmail = $_POST['email'] ?? '';
+
+if (empty($userName) || empty($userEmail)) {
+    die("Name and email are required!");
+}
+
 $cartItems = $_SESSION['cart'];
 $totalPrice = array_sum(array_column($cartItems, 'price'));
 
-// Simulate an order processing (you could store this in a database)
-$orderDetails = [
-    'name' => $userName,
-    'email' => $userEmail,
-    'cart' => $cartItems,
-    'total' => $totalPrice
-];
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mydatabase";
 
-// Hardcoded delivery details (You can change this as needed)
-$deliveryDetails = [
-    'address' => '123 Main St, City, Country',
-    'delivery_time' => '3-5 business days',
-    'order_confirmation_number' => rand(1000, 9999), // Random confirmation number
-];
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Simulate sending the order to the company (this is now local processing)
-$_SESSION['delivery_details'] = $deliveryDetails;
+// Check connection
+if ($conn->connect_error) {
+    die("Database connection failed: " . $conn->connect_error);
+}
 
-// Redirect to the confirmation page
-header('Location: confirmation.php');
-exit;
+// Insert order into database
+$sql = "INSERT INTO orders (name, email, total_price) VALUES (?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ssd", $userName, $userEmail, $totalPrice);
+$stmt->execute();
+
+// Check if insertion was successful
+if ($stmt->affected_rows > 0) {
+    // Fetch the latest order (to display in confirmation page)
+    $orderID = $stmt->insert_id;
+
+    // Simulated delivery details
+    $_SESSION['delivery_details'] = [
+        'address' => '123 Main St, City, Country',
+        'delivery_time' => '3-5 business days',
+        'order_confirmation_number' => rand(1000, 9999),
+        'order_id' => $orderID  // Store order ID for reference
+    ];
+
+    // Close database connection
+    $stmt->close();
+    $conn->close();
+
+    // Redirect to confirmation page
+    header('Location: confirmation.php');
+    exit;
+} else {
+    die("Error inserting order: " . $conn->error);
+}
 ?>
