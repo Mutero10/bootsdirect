@@ -70,6 +70,18 @@ class DatabaseHandler {
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+
+    public function updateProductQuantity($id, $quantity) {
+        $sql = "UPDATE products SET quantity = quantity - :quantity WHERE id = :id AND quantity >= :quantity";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            'quantity' => $quantity,
+            'id' => $id
+        ]);
+    
+        return $stmt->rowCount() > 0; // Returns true if update was successful
+    }
+    
     
     // Method to store the reset token
     public function storeResetToken($email, $token, $expiry) {

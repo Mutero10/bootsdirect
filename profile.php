@@ -1,14 +1,18 @@
 <?php
 session_start();
-require 'db_connect.php'; // Make sure this file connects to your database
+require 'databasehandler.php';
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php"); // Redirect to login if not logged in
-    exit();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+if (!isset($_SESSION['student_id'])) { 
+    die("User not logged in. <a href='formlogin.php'>Login here</a>");
+} else {
+    echo "Session is working. Student ID: " . $_SESSION['student_id'];
 }
 
-$user_id = $_SESSION['user_id'];
+$student_id = $_SESSION['student_id']; 
+
 
 // Fetch user details
 $sql = "SELECT name, email FROM users WHERE id = ?";

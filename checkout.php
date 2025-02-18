@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'databasehandler.php';
 
 // Ensure there are items in the cart
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
@@ -9,7 +10,28 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
 
 $cartItems = $_SESSION['cart'];
 $totalPrice = array_sum(array_column($cartItems, 'price'));
+
+$dbHandler = new DatabaseHandler(); // Database connection
+
+// Process each item in the cart and update product quantity
+foreach ($cartItems as $item) {
+    $productId = $item['id']; // Make sure 'id' exists in your cart session
+    $quantityBought = 1; // Assuming each item is bought once
+
+    $updateSuccess = $dbHandler->updateProductQuantity($productId, $quantityBought);
+
+    if (!$updateSuccess) {
+        echo "<p>Sorry, one or more items are out of stock!</p>";
+        exit;
+    }
+}
+
+// Clear the cart after successful purchase
+$_SESSION['cart'] = [];
+
+echo "<p>Order placed successfully! <a href='index.php'>Continue shopping</a></p>";
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
