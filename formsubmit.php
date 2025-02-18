@@ -36,6 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Submission</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+            background:rgb(65, 66, 67); /* Dark blue */
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+</style>
+
 </head>
 
 <body class="bg-light">
@@ -69,9 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 
                 <div id="error" style="color: red; margin-top: 10px;"></div>
-        <!-- Password link -->
-          <a href ="password.php"> Forgotten Password? </a>
-
+       
         <!-- Buttons-->
             <div class ="text-center">
                 <button type ="submit" class ="btn btn-dark w-50"> Sign Up</button>

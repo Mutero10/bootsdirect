@@ -97,9 +97,7 @@ $totalPrice = array_sum(array_column($cartItems, 'price'));
                 <li class="nav-item">
                     <a class="nav-link" href="cart.php">Cart</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="confirmation.php">Confirmation</a>
-                </li>
+               
             </ul>
         </div>
     </div>

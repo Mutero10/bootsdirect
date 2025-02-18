@@ -18,14 +18,14 @@ foreach ($products as $product): ?>
     <style>
         /* Background Styling */
         body {
-            background-color: #f0f8ff; /* Light Blue background */
+            background-color:rgba(85, 87, 88, 0.54); /* Light Blue background */
             color: #333; /* Dark text */
             font-family: Arial, sans-serif;
         }
 
         /* Navbar Styling */
         .navbar {
-            background-color: #007bff; /* Blue navbar */
+            background-color:rgb(0, 36, 75); /* Blue navbar */
         }
 
         .navbar-brand, .navbar-nav .nav-link {
@@ -44,7 +44,7 @@ foreach ($products as $product): ?>
 
         /* Button Styling */
         .btn-warning {
-            background-color: #ff9800;
+            background-color:rgb(4, 81, 158);
             border: none;
             font-size: 16px;
             font-weight: bold;
@@ -57,7 +57,7 @@ foreach ($products as $product): ?>
         }
 
         .btn-warning:hover {
-            background-color: #e68900;
+            background-color:rgb(0, 65, 230);
             transform: scale(1.05);
         }
 
@@ -71,28 +71,22 @@ foreach ($products as $product): ?>
 
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="#">Adidas Store</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.php">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="cart.php">Cart</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="checkout.php">Checkout</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="contact.php">Contact</a>
-      </li>
-    </ul>
-  </div>
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="adidas.php"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            
+            <li class="nav-item">
+                <a class="nav-link" href="profile.php">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger" href="formlogin.php">Logout</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <!-- Main Content -->
