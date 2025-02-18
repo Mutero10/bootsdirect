@@ -1,33 +1,29 @@
-<?php
+<<?php
 session_start();
-require 'databasehandler.php';
+require_once 'databasehandler.php';
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-if (!isset($_SESSION['student_id'])) { 
-    die("User not logged in. <a href='formlogin.php'>Login here</a>");
-} else {
-    echo "Session is working. Student ID: " . $_SESSION['student_id'];
+// Ensure user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: formlogin.php");
+    exit();
 }
 
-$student_id = $_SESSION['student_id']; 
-
+// Initialize DB connection
+$dbHandler = new DatabaseHandler();
+$username = $_SESSION['username'];
 
 // Fetch user details
-$sql = "SELECT name, email FROM users WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$sql = "SELECT student_id, email FROM students WHERE email = :email";
+$stmt = $dbHandler->pdo->prepare($sql);
+$stmt->execute(['email' => $username]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Fetch user order history
-$order_sql = "SELECT product_name, price, order_date FROM orders WHERE user_id = ? ORDER BY order_date DESC";
-$order_stmt = $conn->prepare($order_sql);
-$order_stmt->bind_param("i", $user_id);
-$order_stmt->execute();
-$order_result = $order_stmt->get_result();
+// Fetch user order history (modify table name if needed)
+$sqlOrders = "SELECT * FROM orders WHERE email = :email ORDER BY id DESC";
+$stmtOrders = $dbHandler->pdo->prepare($sqlOrders);
+$stmtOrders->execute(['email' => $user['email']]); // Use email to match orders
+$orders = $stmtOrders->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
