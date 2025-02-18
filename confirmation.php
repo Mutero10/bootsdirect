@@ -60,7 +60,7 @@ $conn->close();
         <p>Expected Delivery: <?= htmlspecialchars($deliveryDetails['delivery_time'] ?? 'Unknown') ?></p>
         <p>Order Confirmation Number: <?= htmlspecialchars($deliveryDetails['order_confirmation_number'] ?? 'N/A') ?></p>
 
-        <a href="index.php" class="btn btn-primary">Back to Shop</a>
+        <a href="adidas.php" class="btn btn-primary">Back to Shop</a>
     </div>
 
 </body>

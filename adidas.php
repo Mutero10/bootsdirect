@@ -17,18 +17,6 @@
 <!-- Filter Section -->
     <div class="filter-section">
     <div class="row">
-        <div class="col-md-4">
-        <input type="text" id="searchInput" class="form-control" placeholder="Search boots...">
-    </div>
-        <div class="col-md-4">
-        <select id="typeFilter" class="form-control">
-            <option value="">All Types</option>
-            <option value="firm-ground">Firm Ground</option>
-            <option value="soft-ground">Soft Ground</option>
-            <option value="artificial-grass">Artificial Grass</option>
-            <option value="indoor">Indoor</option>
-            </select>
-        </div>
 
         <div class="col-md-4">
         <select id="priceFilter" class="form-control">
