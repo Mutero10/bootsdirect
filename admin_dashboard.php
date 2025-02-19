@@ -3,23 +3,45 @@ session_start();
 require 'databasehandler.php';
 
 // Ensure only admins can access this page
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header("Location: admin_login.php");
-    exit();
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    die("Access Denied! You are not an admin.");
 }
 
-// Get database connection
 $dbHandler = new DatabaseHandler();
 $pdo = $dbHandler->getPDO(); // ✅ Use the getter method
 
-// Fetch product statistics
-$sql = "SELECT name, quantity FROM products";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+try {
+    // Fetch product statistics
+    $sql = "SELECT id, name, quantity, price FROM products";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    die("Error fetching products: " . $e->getMessage());
+}
 
-// Convert data to JSON safely
-$chartData = json_encode($products);
+try {
+    // Fetch users
+    $sqlUsers = "SELECT student_id, email FROM students";
+    $stmtUsers = $pdo->prepare($sqlUsers);
+    $stmtUsers->execute();
+    $users = $stmtUsers->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    die("Error fetching users: " . $e->getMessage());
+}
+
+try {
+    // Fetch orders
+    $sqlOrders = "SELECT id, name, email, total_price FROM orders";
+    $stmtOrders = $pdo->prepare($sqlOrders);
+    $stmtOrders->execute();
+    $orders = $stmtOrders->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    die("Error fetching orders: " . $e->getMessage());
+}
+
+// Convert to JSON safely
+$chartData = json_encode($products, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
 ?>
 
 <!DOCTYPE html>
@@ -31,14 +53,16 @@ $chartData = json_encode($products);
 </head>
 <body>
 
-<h2>Product Statistics</h2>
+<h2>Admin Dashboard</h2>
+
+<h3>Product Statistics</h3>
 <canvas id="productChart"></canvas>
 
 <script>
-    let products = <?php echo $chartData ?: '[]'; ?>; // ✅ Prevent JSON errors
+    let products = <?php echo $chartData; ?>;
 
-    if (products.length === 0) {
-        document.write("<p>No product data available.</p>"); // Show message if empty
+    if (!Array.isArray(products) || products.length === 0) {
+        console.error("Invalid product data for chart.");
     } else {
         let labels = products.map(p => p.name);
         let quantities = products.map(p => p.quantity);
@@ -57,6 +81,32 @@ $chartData = json_encode($products);
     }
 </script>
 
+<!-- Product Management Section -->
+<h3>Manage Products</h3>
+<a href="add.php"><button>Add Product</button></a>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    <?php foreach ($products as $product): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($product['name']); ?></td>
+            <td><?php echo htmlspecialchars($product['quantity']); ?></td>
+            <td><?php echo htmlspecialchars($product['price']); ?></td>
+            <td>
+                <a href="edit.php?id=<?php echo $product['id']; ?>">Edit</a>
+                <a href="delete.php?id=<?php echo $product['id']; ?>" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
 <a href="admin_logout.php">Logout</a>
+
 </body>
 </html>
+

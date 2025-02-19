@@ -80,9 +80,6 @@ foreach ($products as $product): ?>
         <ul class="navbar-nav ml-auto">
             
             <li class="nav-item">
-                <a class="nav-link" href="profile.php">Profile</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link text-danger" href="formlogin.php">Logout</a>
             </li>
         </ul>
@@ -94,19 +91,7 @@ foreach ($products as $product): ?>
 
     <a href="cart.php" class="btn btn-warning">View Cart</a>
 
-    <!-- Filter Section -->
-    <div class="filter-section">
-        <div class="row">
-            <div class="col-md-4">
-                <select id="priceFilter" class="form-control">
-                    <option value="all">All Prices</option>
-                    <option value="6000-6500">6000 - 6500</option>
-                    <option value="5000-5999">5000 - 5999</option>
-                    <option value="4000-4999">4000 - 4999</option>
-                </select>
-            </div>
-        </div>
-    </div>
+    
     
     <!-- Displays product items -->
     <div class="row" id="productGrid">

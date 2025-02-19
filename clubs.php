@@ -100,8 +100,7 @@ body {
       <span class="navbar-brand mx-auto text-center w-100 h1"> STEP UP YOUR GAME</span>
       <div>
         <a href="adidas.php" class="btn btn-outline-light me-2">Adidas</a>
-        <a href="nike.php" class="btn btn-outline-light me-2">Nike</a>
-        <a href="puma.php" class="btn btn-outline-light">Puma</a>
+        
       </div>
     </div>
   </nav>
@@ -143,44 +142,6 @@ body {
     </div>
   </div>
 
-
-  <div class="container text-center mt-4">
-    <!-- Popular Right Now -->
-    <h1 class="mb-4 text-dark fw-bold">NEW ARRIVALS <hr> </h1>
-    <div class="row justify-content-center mb-4">
-      <div class="col-md-3">
-        <div class="image-container">
-          <img src="boots.webp" class="img-fluid rounded custom-img">
-          <p class="img-text">Adidas Predator 2024</p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="image-container">
-          <img src="boots2.jpeg" class="img-fluid rounded custom-img">
-          <p class="img-text">Adidas Predator 2024</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Latest Release -->
-
-    <h1 class="mb-4 text-dark fw-bold">WHAT'S HOT <hr> </h1>
-    <div class="row justify-content-center">
-      <div class="col-md-3">
-        <div class="image-container">
-          <img src="boots3.avif" class="img-fluid rounded custom-img">
-          <p class="img-text">Nike</p>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="image-container">
-          <img src="boots4.webp" class="img-fluid rounded custom-img">
-          <p class="img-text">Nike</p>
-        </div>
-      </div>
-    </div>
-</div>
 
 
   <!-- Bootstrap JS -->
