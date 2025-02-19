@@ -11,6 +11,11 @@ class DatabaseHandler {
             echo "Connection failed: " . $e->getMessage();
         }
     }
+    
+    // Add this function to return the PDO instance safely
+    public function getPDO() {
+        return $this->pdo;
+    }
 
     public function insertUser($student_id, $email, $password) {
         $sql = "INSERT INTO students (student_id, email, password) VALUES (:student_id, :email, :password)";
