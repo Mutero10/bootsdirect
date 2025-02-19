@@ -42,12 +42,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<form method="POST" action="add.php" enctype="multipart/form-data">
-    <input type="text" name="name" placeholder="Product Name" required>
-    <input type="number" name="quantity" placeholder="Quantity" required>
-    <input type="number" step="0.01" name="price" placeholder="Price" required>
-    <input type="file" name="image"> <!-- Image is now optional -->
-    <button type="submit">Add Product</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
 
-<a href="admin_dashboard.php">Back to Dashboard</a>
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Admin Panel</a>
+        <a href="admin_dashboard.php" class="btn btn-outline-light">Back to Dashboard</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Add New Product</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="add.php" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label class="form-label">Product Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter product name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Quantity</label>
+                            <input type="number" name="quantity" class="form-control" placeholder="Enter quantity" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Price (Ksh)</label>
+                            <input type="number" step="0.01" name="price" class="form-control" placeholder="Enter price" required>
+                        </div>
+
+                        
+
+                        <button type="submit" class="btn btn-success w-100">Add Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -157,4 +157,3 @@ echo "<p>Order placed successfully! <a href='index.php'>Continue shopping</a></p
 
 </body>
 </html>
-
