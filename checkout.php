@@ -1,12 +1,15 @@
 <?php
 session_start();
+
 require_once 'databasehandler.php';
 
+
 // Ensure there are items in the cart
-if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    echo "<p>Your cart is empty. <a href='index.php'>Go back to shop</a></p>";
+if (!isset($_SESSION['cart']) || count($_SESSION['cart']) === 0) {
+    echo "<p>Your cart is empty. <a href='adidas.php'>Go back to shop</a></p>";
     exit;
 }
+
 
 $cartItems = $_SESSION['cart'];
 $totalPrice = array_sum(array_column($cartItems, 'price'));
@@ -26,10 +29,6 @@ foreach ($cartItems as $item) {
     }
 }
 
-// Clear the cart after successful purchase
-$_SESSION['cart'] = [];
-
-echo "<p>Order placed successfully! <a href='index.php'>Continue shopping</a></p>";
 ?>
 
 

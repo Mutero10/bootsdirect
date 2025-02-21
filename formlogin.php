@@ -1,30 +1,43 @@
 <?php
+// Start session
+session_start();
+
 // Include necessary files
 require_once 'databasehandler.php';
 
-// Start session for storing user data (if needed)
-session_start();
+
+// Preserve cart before logging in
+$cartBackup = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Initialize DatabaseHandler
     $dbHandler = new DatabaseHandler();
 
-    // Assuming you have a method to check user credentials
+    // Get user credentials
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     // Check if the credentials are correct (use your own database logic)
     if ($dbHandler->checkLogin($username, $password)) {
-        // Successful login, set session
+        // Regenerate session ID for security
+        session_regenerate_id(true);
+
+        // Restore cart data after login
+        $_SESSION['cart'] = $cartBackup;
+
+        // Set session username
         $_SESSION['username'] = $username;
-        header("Location: clubs.php"); // Redirect to clubs.php
+
+        // Redirect to clubs.php
+        header("Location: clubs.php");
         exit();
     } else {
         echo "<p>Invalid username or password!</p>";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

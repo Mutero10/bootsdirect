@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -111,4 +112,7 @@ if ($stmt->affected_rows > 0) {
 // Close database connection
 $stmt->close();
 $conn->close();
+
+// Clear the cart only after the order has been processed successfully
+$_SESSION['cart'] = [];
 ?>
