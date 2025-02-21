@@ -7,25 +7,41 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     die("Access Denied! You are not an admin.");
 }
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+// Product class definition
+class Product {
+    private $pdo;
 
-    $dbHandler = new DatabaseHandler();
-    $pdo = $dbHandler->getPDO();
-
-    try {
-        $sql = "DELETE FROM products WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id' => $id]);
-
-        echo "<p>Product deleted successfully!</p>";
-    } catch (Exception $e) {
-        die("Error deleting product: " . $e->getMessage());
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
     }
+
+    // Method to delete a product by ID
+    public function deleteProduct($id) {
+        try {
+            $sql = "DELETE FROM products WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['id' => $id]);
+
+            return "<p>Product deleted successfully!</p>";
+        } catch (Exception $e) {
+            return "Error deleting product: " . $e->getMessage();
+        }
+    }
+}
+
+// Create a DatabaseHandler instance
+$dbHandler = new DatabaseHandler();
+$pdo = $dbHandler->getPDO();
+$productHandler = new Product($pdo);
+
+// Handle delete request
+if (isset($_GET['id'])) {
+    echo $productHandler->deleteProduct($_GET['id']);
 } else {
     die("No product selected!");
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

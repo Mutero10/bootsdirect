@@ -7,13 +7,49 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     die("Access Denied! You are not an admin.");
 }
 
+// Define Product class
+class Product {
+    private $name;
+    private $quantity;
+    private $price;
+    private $image;
+    private $pdo;
+
+    // Constructor
+    public function __construct($name, $quantity, $price, $image, $pdo) {
+        $this->name = $name;
+        $this->quantity = $quantity;
+        $this->price = $price;
+        $this->image = $image;
+        $this->pdo = $pdo;
+    }
+
+    // Method to save product
+    public function save() {
+        try {
+            $sql = "INSERT INTO products (name, quantity, price, image) VALUES (:name, :quantity, :price, :image)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                ':name' => $this->name,
+                ':quantity' => $this->quantity,
+                ':price' => $this->price,
+                ':image' => $this->image
+            ]);
+            return "Product added successfully!";
+        } catch (PDOException $e) {
+            return "Error adding product: " . $e->getMessage();
+        }
+    }
+}
+
+// Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $quantity = $_POST['quantity'];
     $price = $_POST['price'];
     $image = null; // Default to NULL
 
-    // Check if an image was uploaded
+    // Handle image upload
     if (!empty($_FILES['image']['name'])) {
         $image = $_FILES['image']['name'];
         $target_dir = "uploads/";
@@ -21,26 +57,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
     }
 
-    try {
-        $dbHandler = new DatabaseHandler();
-        $pdo = $dbHandler->getPDO();
+    // Create DatabaseHandler instance
+    $dbHandler = new DatabaseHandler();
+    $pdo = $dbHandler->getPDO();
 
-        // Use NULL if no image is uploaded
-        $sql = "INSERT INTO products (name, quantity, price, image) VALUES (:name, :quantity, :price, :image)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':name' => $name,
-            ':quantity' => $quantity,
-            ':price' => $price,
-            ':image' => $image // This will be NULL if no image was uploaded
-        ]);
-
-        echo "Product added successfully!";
-    } catch (PDOException $e) {
-        echo "Error adding product: " . $e->getMessage();
-    }
+    // Create Product object and save
+    $product = new Product($name, $quantity, $price, $image, $pdo);
+    echo $product->save();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
