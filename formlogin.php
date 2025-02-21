@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div id="error" style="color: red; margin-top: 10px;"></div>
 
-
+            <a href="formsubmit.php"> Don't have an account? </a> 
             <div class ="text-center">
                 <button type="submit" class="btn btn-dark w-50">LogIn</button>
             </div>

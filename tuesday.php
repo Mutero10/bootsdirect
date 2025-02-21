@@ -8,7 +8,7 @@ require __DIR__ . '/vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-require 'C:/Apache24/htdocs/includes/vendor/autoload.php';
+require 'C:/Apache24/htdocs/bootsdirect/vendor/autoload.php';
 
 $twoFactorCode = mt_rand(100000, 999999); // Generate a 6-digit code
 
@@ -23,7 +23,7 @@ if (!send2FACode($_POST['email'], $twoFactorCode)) {
 }
 
 // Redirect to verify-2fa.php after sending the code
-header('Location: /includes/verify-2fa.php');
+header('Location: /bootsdirect/verify-2fa.php');
 exit();
 
 // Debugging to check session variables
@@ -67,7 +67,8 @@ if (!send2FACode($_POST['email'], $twoFactorCode)) {
     exit;
 }
 
-header('Location: /includes/verify-2fa.php');
+header('Location: /bootsdirect/verify-2fa.php');
+
 exit;
 
 //session_start();

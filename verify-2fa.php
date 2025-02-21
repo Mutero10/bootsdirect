@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         unset($_SESSION['userEmail']);      
         
         // Redirect to the signup page or another welcome page
-        header('Location: /includes/formsubmit.php');  // Adjust to your desired page
+        header('Location: /bootsdirect/formsubmit.php');  // Adjust to your desired page
         exit();
     } else {
         // Display an error message if the code or email is invalid
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     // Prevent direct access to this page if session data is missing
     if (!isset($_SESSION['twoFactorCode']) || !isset($_SESSION['userEmail'])) {
-        header('Location: /includes/formsubmit.php');  // Redirect to the signup page
+        header('Location: /bootsdirect/formsubmit.php');  // Redirect to the signup page
         exit();
     }
 }
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
         <h3 class="text-center mb-4">2FA Verification</h3>
-        <form method="POST" action="verify-2fa.php">
+        <form method="POST" action="/bootsdirect/verify-2fa.php">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input 

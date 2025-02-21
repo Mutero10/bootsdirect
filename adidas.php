@@ -1,4 +1,5 @@
 <?php
+
 // Assume you already fetched $products from the database
 foreach ($products as $product): ?>
     <div class="product-card" data-price="<?= htmlspecialchars($product['price']) ?>" data-type="<?= htmlspecialchars($product['type']) ?>">
@@ -88,9 +89,7 @@ foreach ($products as $product): ?>
 <!-- Main Content -->
 <div class="container mt-5">
 
-    <a href="cart.php" class="btn btn-warning">View Cart</a>
-
-    
+    <a href="cart.php" class="btn btn-warning">View Cart</a>  
     
     <!-- Displays product items -->
     <div class="row" id="productGrid">
@@ -105,64 +104,11 @@ foreach ($products as $product): ?>
 
 </body>
 </html>
-
-    
-          
+         
     <div class="row" id="productGrid">
       <?php include 'fetch_adidas.php'; ?>
     </div>
 
-
-    <script>
-        // JavaScript for filtering and search functionality
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-    const typeFilter = document.getElementById('typeFilter');
-    const priceFilter = document.getElementById('priceFilter');
-    const productCards = document.querySelectorAll('.product-card');
-
-    function filterProducts() {
-        const searchText = searchInput.value.toLowerCase();
-        const selectedType = typeFilter.value;
-        const selectedPrice = priceFilter.value;
-
-        productCards.forEach(card => {
-            const title = card.querySelector('.card-title').textContent.toLowerCase();
-            const type = card.getAttribute('data-type');
-            const price = parseFloat(card.getAttribute('data-price'));
-            
-            let isVisible = true;
-
-            // Search filter
-            if (searchText && !title.includes(searchText)) {
-                isVisible = false;
-            }
-
-            // Type filter
-            if (selectedType && selectedType !== "all" && type !== selectedType) {
-                isVisible = false;
-            }
-
-            // Price filter
-            if (selectedPrice) {
-                const [min, max] = selectedPrice.split('-').map(Number);
-                if (price < min || (max && price > max)) {
-                    isVisible = false;
-                }
-            }
-
-            // Apply visibility
-            card.style.display = isVisible ? 'flex' : 'none';  // Use 'flex' if your product grid uses flexbox
-        });
-    }
-
-    // Event listeners
-    searchInput.addEventListener('input', filterProducts);
-    typeFilter.addEventListener('change', filterProducts);
-    priceFilter.addEventListener('change', filterProducts);
-});
-
-    </script>  
     
 </body>
 </html>

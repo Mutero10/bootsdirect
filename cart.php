@@ -126,8 +126,11 @@ $cartItems = $_SESSION["cart"]; // Use session data directly
         <h1>Your Cart</h1>
 
         <?php if (empty($cartItems)): ?>
-            <p class="cart-empty-message">Your cart is empty.</p>
-        <?php else: ?>
+     <div class="alert alert-warning" role="alert">
+        Your cart is empty.
+     </div>
+    <?php else: ?>
+
             <ul class="list-group">
                 <?php foreach ($cartItems as $index => $item): ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
