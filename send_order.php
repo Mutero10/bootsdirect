@@ -113,6 +113,8 @@ if ($stmt->affected_rows > 0) {
 $stmt->close();
 $conn->close();
 
-// Clear the cart only after the order has been processed successfully
-$_SESSION['cart'] = [];
+// Clear the entire session
+session_start();
+unset($_SESSION['cart']); // Remove only the cart
+session_write_close(); // Ensure session changes are saved
 ?>

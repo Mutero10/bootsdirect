@@ -79,9 +79,8 @@ foreach ($products as $product): ?>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             
-            <li class="nav-item">
-                <a class="nav-link text-danger" href="formlogin.php">Logout</a>
-            </li>
+        <a href="logout.php" class="btn btn-danger">Logout</a>
+
         </ul>
     </div>
 </nav>

@@ -149,9 +149,8 @@ $chartData = json_encode($products, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT
     <div class="d-flex justify-content-center">
         <canvas id="productChart" style="max-width: 100%; height: 400px;"></canvas>
     </div>
-    
+
     <!-- Product Statistics -->
-    <h3>Product Statistics</h3>
     <canvas id="productChart"></canvas>
 
     <script>
@@ -197,7 +196,7 @@ $chartData = json_encode($products, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT
                 <td><?php echo htmlspecialchars($product['quantity']); ?></td>
                 <td><?php echo htmlspecialchars($product['price']); ?></td>
                 <td>
-                    <a href="edit.php?id=<?php echo $product['id']; ?>" class="btn edit-btn">Edit</a>
+                    <a href="edit.php?id=<?php echo $product['id']; ?>" class="btn edit-btn">Update</a>
                     <a href="delete.php?id=<?php echo $product['id']; ?>" class="btn delete-btn" onclick="return confirm('Are you sure?')">Delete</a>
                 </td>
             </tr>
