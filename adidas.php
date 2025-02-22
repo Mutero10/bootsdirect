@@ -104,6 +104,38 @@ foreach ($products as $product): ?>
 
 </body>
 </html>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", function () {
+            let productId = this.getAttribute("data-id");
+            let productName = this.getAttribute("data-name");
+            let productPrice = this.getAttribute("data-price");
+            let sizeSelector = this.closest(".card-body").querySelector(".size-selector");
+            let selectedSize = sizeSelector ? sizeSelector.value : null;
+
+            if (!selectedSize) {
+                alert("Please select a size before adding to cart.");
+                return;
+            }
+
+            fetch("add_to_cart.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `product_id=${productId}&name=${encodeURIComponent(productName)}&price=${productPrice}&size=${selectedSize}`
+            })
+            .then(response => response.json()) // Parse JSON response
+            .then(data => {
+                alert(data.message); // Show success message only
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    });
+});
+</script>
+
+
          
     <div class="row" id="productGrid">
       <?php include 'fetch_adidas.php'; ?>

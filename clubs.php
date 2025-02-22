@@ -99,7 +99,7 @@ body {
     <div class="container-fluid">
       <span class="navbar-brand mx-auto text-center w-100 h1"> STEP UP YOUR GAME</span>
       <div>
-        <a href="adidas.php" class="btn btn-outline-light me-2">Adidas</a>
+        <a href="adidas.php" class="btn btn-outline-light me-2">Shop Now</a>
         
       </div>
     </div>
@@ -107,7 +107,7 @@ body {
 
   <!-- Bootstrap Slideshow -->
   <div class="carousel-container">
-    <div id="bannerSlideshow" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+    <div id="bannerSlideshow" class="carousel slide" data-bs-ride="carousel" data-bs-interval="500">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="banner1.jpg" class="d-block" alt="Slide 1">

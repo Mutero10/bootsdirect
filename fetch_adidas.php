@@ -6,27 +6,39 @@ $products = $db->getAdidasProducts(); // Fetch only Adidas products
 
 if (!empty($products)) {
     foreach ($products as $row) {
-    echo '
-    <div class="col-md-4 mb-4 product-card" data-type="' . htmlspecialchars($row["type"]) . '" data-price="' . htmlspecialchars($row["price"]) . '">
-    <div class="card h-100">
-        <img src="' . htmlspecialchars($row["image"]) . '" class="card-img-top product-image" alt="' . htmlspecialchars($row["name"]) . '">
-        <div class="card-body">
-            <h5 class="card-title">' . htmlspecialchars($row["name"]) . '</h5>
-            <p class="card-text">Ksh ' . htmlspecialchars($row["price"]) . '</p>
+        echo '
+        <div class="col-md-4 mb-4 product-card" data-type="' . htmlspecialchars($row["type"]) . '" data-price="' . htmlspecialchars($row["price"]) . '">
+            <div class="card h-100">
+                <img src="' . htmlspecialchars($row["image"]) . '" class="card-img-top product-image" alt="' . htmlspecialchars($row["name"]) . '">
+                <div class="card-body">
+                    <h5 class="card-title">' . htmlspecialchars($row["name"]) . '</h5>
+                    <p class="card-text">Ksh ' . htmlspecialchars($row["price"]) . '</p>
 
-        <button class="btn btn-success add-to-cart" 
-        data-id="' . htmlspecialchars($row["id"]) . '" 
-        data-name="' . htmlspecialchars($row["name"]) . '" 
-        data-price="' . htmlspecialchars($row["price"]) . '">Add to Cart</button>
+                    <!-- Size Selection Dropdown -->
+                    <select class="form-control mb-2 size-selector" data-id="' . htmlspecialchars($row["id"]) . '">
+                        <option value="" disabled selected>Select Size</option>';
+                        for ($size = 38; $size <= 48; $size++) {
+                            echo '<option value="' . $size . '">' . $size . '</option>';
+                        }
+                    echo '</select>
 
-        </div>
-    </div>
-</div>';
+                    <!-- Add to Cart Button -->
+                    <button class="btn btn-success add-to-cart" 
+                        data-id="' . htmlspecialchars($row["id"]) . '" 
+                        data-name="' . htmlspecialchars($row["name"]) . '" 
+                        data-price="' . htmlspecialchars($row["price"]) . '">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>';
     }
 } else {
     echo "<p>No Adidas products found.</p>";
 }
 ?>
+
+
 
 <script>
     document.querySelectorAll('.add-to-cart').forEach(function(button) {

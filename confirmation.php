@@ -121,16 +121,28 @@ $conn->close();
     </div>
 </nav>
 
+<!-- Order Confirmation Section -->
+<div class="container mt-5">
+    <h2>Order Confirmation</h2>
+    <p>Thank you, <strong><?= htmlspecialchars($order['name'] ?? 'Customer') ?></strong>! Your order has been received.</p>
+    <p><strong>Email:</strong> <?= htmlspecialchars($order['email'] ?? 'Not provided') ?></p>
+    <p><strong>Total Price:</strong> Ksh <?= htmlspecialchars($order['total_price'] ?? '0') ?></p>
 
-    <!-- Order Confirmation Section -->
-    <div class="container mt-5">
-        <h2>Order Confirmation</h2>
-        <p>Thank you, <strong><?= htmlspecialchars($order['name'] ?? 'Customer') ?></strong>! Your order has been received.</p>
-        <p><strong>Email:</strong> <?= htmlspecialchars($order['email'] ?? 'Not provided') ?></p>
-        <p><strong>Total Price:</strong> Ksh <?= htmlspecialchars($order['total_price'] ?? '0') ?></p>
+    <!-- Ordered Items List -->
+    <h3>Ordered Items:</h3>
+    <ul class="list-group">
+        <?php foreach ($_SESSION['cart'] as $item): ?>
+            <li class="list-group-item">
+                <strong><?= htmlspecialchars($item['name']) ?></strong>  
+                <br> <small>Size: <?= htmlspecialchars($item['size']) ?></small>  
+                <br> Ksh <?= htmlspecialchars($item['price']) ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 
-        <a href="adidas.php" class="btn btn-primary mt-3">Back to Shop</a>
-    </div>
+    <a href="adidas.php" class="btn btn-primary mt-3">Back to Shop</a>
+</div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

@@ -129,12 +129,15 @@ foreach ($cartItems as $item) {
     <h2>Checkout</h2>
     <!-- Cart Items List -->
     <ul class="list-group">
-        <?php foreach ($cartItems as $item): ?>
-            <li class="list-group-item">
-                <strong><?= htmlspecialchars($item['name']) ?></strong> - Ksh <?= htmlspecialchars($item['price']) ?>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+    <?php foreach ($cartItems as $item): ?>
+        <li class="list-group-item">
+            <strong><?= htmlspecialchars($item['name']) ?></strong>  
+            <br> <small>Size: <?= htmlspecialchars($item['size']) ?></small>  
+            <br> Ksh <?= htmlspecialchars($item['price']) ?>
+        </li>
+    <?php endforeach; ?>
+   </ul>
+
 
     <h4 class="mt-3">Total: Ksh <?= $totalPrice ?></h4>
 

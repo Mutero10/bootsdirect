@@ -1,30 +1,42 @@
 <?php
-
 session_start();
 
-// Get the raw POST data
-$input = json_decode(file_get_contents('php://input'), true);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the data from the POST request
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $price = $_POST['price'];
-
-    // Prepare the product to be added to the cart
-    $product = array('id' => $id, 'name' => $name, 'price' => $price);
-
-    // Initialize the cart if it doesn't exist
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = array(); // Initialize the cart if it's empty
-    }
-
-    // Add the product to the session cart
-    $_SESSION['cart'][] = $product;
-
-    echo 'Product added to cart'; // Optional message to confirm
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(["status" => "error", "message" => "Invalid request"]);
+    exit();
 }
+
+// Retrieve data from the POST request
+$product_id = $_POST['product_id'] ?? null;
+$name = $_POST['name'] ?? null;
+$price = $_POST['price'] ?? null;
+$size = $_POST['size'] ?? null;
+
+// Validate data
+if (!$product_id || !$name || !$price || !$size) {
+    echo json_encode(["status" => "error", "message" => "Missing product details"]);
+    exit();
+}
+
+// Initialize the cart if it doesn't exist
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
+// Add the product with size to the session cart
+$_SESSION['cart'][] = [
+    'id' => $product_id,
+    'name' => $name,
+    'price' => $price,
+    'size' => $size
+];
+
+// Return a JSON response instead of redirecting
+//echo json_encode(["status" => "success", "message" => "Product added to cart"]);
+exit();
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

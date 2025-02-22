@@ -1,18 +1,25 @@
-<?php
+<?php 
 session_start();
 include 'databasehandler.php';
 
 $db = new DatabaseHandler();
 
-// Check if the cart is empty
-if (!isset($_SESSION["cart"]) || empty($_SESSION["cart"])) {
+// Ensure the cart is initialized
+$cart = $_SESSION["cart"] ?? [];
+
+if (empty($cart)) {
     echo "<p>Your cart is empty.</p>";
     exit;
 }
 
-$cartItems = $_SESSION["cart"]; // Use session data directly
+$cartItems = $cart; // Use session data directly
 
+// Display cart items
+foreach ($cartItems as $item) {
+  //  echo "<p>" . htmlspecialchars($item["name"]) . " (Size: " . htmlspecialchars($item["size"]) . ") - Ksh " . htmlspecialchars($item["price"]) . "</p>";
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -131,20 +138,22 @@ $cartItems = $_SESSION["cart"]; // Use session data directly
      </div>
     <?php else: ?>
 
-            <ul class="list-group">
-                <?php foreach ($cartItems as $index => $item): ?>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                            <strong><?= htmlspecialchars($item['name']) ?></strong><br>
-                            Price: Ksh <?= htmlspecialchars($item['price']) ?>
-                        </div>
-                        <form action="remove_item.php" method="POST">
-                            <input type="hidden" name="index" value="<?= $index ?>">
-                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
-                        </form>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+        <ul class="list-group">
+    <?php foreach ($cartItems as $index => $item): ?>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong><?= htmlspecialchars($item['name']) ?></strong>  
+                <br> <small>Size: <?= htmlspecialchars($item['size']) ?></small>  
+                <br> Price: Ksh <?= htmlspecialchars($item['price']) ?>
+            </div>
+            <form action="remove_item.php" method="POST">
+                <input type="hidden" name="index" value="<?= $index ?>">
+                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+            </form>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
             <a href="checkout.php" class="btn btn-primary mt-3">Proceed to Checkout</a>
         <?php endif; ?>
     </div>
