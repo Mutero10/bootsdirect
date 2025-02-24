@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include 'databasehandler.php';
 session_start();
 
@@ -12,12 +15,12 @@ $username = $_SESSION['username'] ?? 'Guest';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['message']) && !empty(trim($_POST['message']))) {
         $message = trim($_POST['message']);
-        $sender_type = 'user'; // Message is from a user
+        $sender_type = 'user'; // User's message
 
+        // Insert user message as a new row
         $stmt = $pdo->prepare("INSERT INTO messages (username, message, sender_type, created_at) VALUES (?, ?, ?, NOW())");
         if ($stmt->execute([$username, $message, $sender_type])) {
-            // Redirect to prevent resubmission on refresh
-            header("Location: " . $_SERVER['PHP_SELF']);
+            header("Location: " . $_SERVER['PHP_SELF']); // Prevents form resubmission on refresh
             exit();
         }
     }
@@ -26,19 +29,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['clear_chat'])) {
         $stmt = $pdo->prepare("DELETE FROM messages WHERE username = ?");
         if ($stmt->execute([$username])) {
-            // Redirect after clearing chat to avoid resubmission
             header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         }
     }
 }
 
-
-// Retrieve messages from the database for the logged-in user
-$stmt = $pdo->prepare("SELECT * FROM messages WHERE username = ? ORDER BY created_at ASC");
+// Retrieve chat history for this user
+$stmt = $pdo->prepare("SELECT * FROM messages WHERE username = ? OR sender_type = 'admin' ORDER BY created_at ASC");
 $stmt->execute([$username]);
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 
 

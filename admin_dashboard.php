@@ -178,6 +178,10 @@ $chartData = json_encode($products, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT
         }
     </script>
 
+<form action="generate_pdf.php" method="POST">
+    <button type="submit" class="btn btn-primary">Download Product Report (PDF)</button>
+</form>
+
     <!-- Product Management Section -->
     <h3>Manage Products</h3>
 
