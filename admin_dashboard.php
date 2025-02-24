@@ -140,6 +140,8 @@ $chartData = json_encode($products, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <a href="admin_logout.php" class="btn btn-danger">Logout</a>
+        <a href="admin_messages.php" class="btn btn-primary">View Messages</a>
+
     </div>
 </nav>
 <div class="container mt-4">

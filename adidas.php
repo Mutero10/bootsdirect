@@ -19,14 +19,14 @@ foreach ($products as $product): ?>
     <style>
         /* Background Styling */
         body {
-            background-color:rgba(85, 87, 88, 0.54); /* Light Blue background */
+            background-color:rgb(180, 179, 179); /* Light Blue background */
             color: #333; /* Dark text */
             font-family: Arial, sans-serif;
         }
 
         /* Navbar Styling */
         .navbar {
-            background-color:rgb(0, 36, 75); /* Blue navbar */
+            background-color:rgb(45, 45, 45); /* Blue navbar */
         }
 
         .navbar-brand, .navbar-nav .nav-link {
@@ -45,7 +45,7 @@ foreach ($products as $product): ?>
 
         /* Button Styling */
         .btn-warning {
-            background-color:rgb(4, 81, 158);
+            background-color:rgb(1, 76, 152);
             border: none;
             font-size: 16px;
             font-weight: bold;
@@ -79,9 +79,11 @@ foreach ($products as $product): ?>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            
-        <a href="logout.php" class="btn btn-danger">Logout</a>
+        
+        <a href="contact.php" class ="btn btn-danger"> Contact </a> <br>
 
+        <a href="logout.php" class="btn btn-danger">Logout</a>
+        
         </ul>
     </div>
 </nav>

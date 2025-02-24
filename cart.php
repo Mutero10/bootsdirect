@@ -39,7 +39,7 @@ foreach ($cartItems as $item) {
 
         /* Container Styling */
         .container {
-            background: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
+            background: rgba(0, 0, 0, 0.1); /* Slightly transparent white */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
@@ -80,7 +80,7 @@ foreach ($cartItems as $item) {
         }
 
         .btn-danger {
-            background-color:rgb(193, 133, 30);
+            background-color:rgb(0, 0, 0);
             border: none;
             padding: 5px 10px;
             transition: 0.3s;
@@ -157,5 +157,6 @@ foreach ($cartItems as $item) {
             <a href="checkout.php" class="btn btn-primary mt-3">Proceed to Checkout</a>
         <?php endif; ?>
     </div>
+    
 </body>
 </html>
