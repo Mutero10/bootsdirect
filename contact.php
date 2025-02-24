@@ -4,26 +4,44 @@ session_start();
 
 $db = new DatabaseHandler();
 $pdo = $db->getPDO();
-$username = $_SESSION['username'] ?? 'Guest'; // Retrieve username from session
 
-
+// Retrieve username from session
+$username = $_SESSION['username'] ?? 'Guest';
 
 // Handle message submission
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['message'])) {
-    $message = trim($_POST['message']);
-
-    if (!empty($message)) {
-        $sender_type = 'user'; // Indicating the message is from a user
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['message']) && !empty(trim($_POST['message']))) {
+        $message = trim($_POST['message']);
+        $sender_type = 'user'; // Message is from a user
 
         $stmt = $pdo->prepare("INSERT INTO messages (username, message, sender_type, created_at) VALUES (?, ?, ?, NOW())");
-        $stmt->execute([$username, $message, $sender_type]);
+        if ($stmt->execute([$username, $message, $sender_type])) {
+            // Redirect to prevent resubmission on refresh
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
+        }
+    }
+
+    // Handle chat clearing
+    if (isset($_POST['clear_chat'])) {
+        $stmt = $pdo->prepare("DELETE FROM messages WHERE username = ?");
+        if ($stmt->execute([$username])) {
+            // Redirect after clearing chat to avoid resubmission
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
+        }
     }
 }
 
-// Retrieve messages from the database
-$stmt = $pdo->query("SELECT * FROM messages ORDER BY created_at ASC");
-$messages = $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+
+// Retrieve messages from the database for the logged-in user
+$stmt = $pdo->prepare("SELECT * FROM messages WHERE username = ? ORDER BY created_at ASC");
+$stmt->execute([$username]);
+$messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -42,6 +60,11 @@ $messages = $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
         <form action="contact.php" method="POST">
             <textarea class="form-control" name="message" rows="3" placeholder="Type your message..." required></textarea>
             <button type="submit" class="btn btn-dark mt-2">Send Message</button>
+        </form>
+
+        <!-- Clear Chat Button -->
+        <form action="contact.php" method="POST">
+            <button type="submit" name="clear_chat" class="btn btn-danger mt-2">Clear Chat</button>
         </form>
 
         <h3 class="mt-4">Message History</h3>
