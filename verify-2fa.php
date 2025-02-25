@@ -1,34 +1,54 @@
 <?php
 session_start();
+require_once 'databasehandler.php'; // Ensure the database handler is included
 
+// Ensure the session has the stored 2FA code
+if (!isset($_SESSION['twoFactorCode'])) {
+    die("Error: Session expired or 2FA code not set. Please sign up again.");
+}
+
+// Debugging (Remove after testing)
+echo "Stored 2FA Code: " . $_SESSION['twoFactorCode'] . "<br>";
+
+// Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $enteredCode = $_POST['code'];  // The code entered by the user
-    $email = $_POST['email'];      // The email entered by the user
+    // Get user input and trim whitespace
+    $enteredCode = trim($_POST['twoFactorCode']);
 
-    // Retrieve stored values from session
-    $storedCode = $_SESSION['twoFactorCode'] ?? null;
-    $storedEmail = $_SESSION['userEmail'] ?? null;
+    // Debugging (Remove after testing)
+    echo "Entered 2FA Code: " . $enteredCode . "<br>";
 
-    // Check if the entered code and email match the stored values
-    if ($enteredCode == $storedCode && $email == $storedEmail) {
-        echo "<h2>2FA verification successful! You are now signed up.</h2>";
-       
-        // Clear the stored session data
-        unset($_SESSION['twoFactorCode']);  
-        unset($_SESSION['userEmail']);      
-        
-        // Redirect to the signup page or another welcome page
-        header('Location: /bootsdirect/formsubmit.php');  // Adjust to your desired page
-        exit();
+    // Check if entered code matches stored code
+    if ((string) $enteredCode === (string) $_SESSION['twoFactorCode']) {
+        // Success: Proceed with registration
+        $db = new DatabaseHandler();
+
+        // Check if signup data exists
+        if (!isset($_SESSION['signup_data'])) {
+            die("Error: Missing user signup data. Please try again.");
+        }
+
+        // Get stored user data
+        $userData = $_SESSION['signup_data'];
+
+        // Insert into database
+        $query = "INSERT INTO students (student_id, email, password, role) VALUES (?, ?, ?, ?)";
+        $db->executeQuery($query, [
+            $userData['student_id'], 
+            $userData['email'], 
+            password_hash($userData['password'], PASSWORD_DEFAULT), // Secure password storage
+            'student'
+        ]);
+
+        // Clear session data
+        unset($_SESSION['signup_data']);
+        unset($_SESSION['twoFactorCode']);
+
+        // Redirect after successful registration
+        header("Location: formlogin.php");
+        exit;
     } else {
-        // Display an error message if the code or email is invalid
-        echo "<h2>Invalid verification code or email. Please try again.</h2>";
-    }
-} else {
-    // Prevent direct access to this page if session data is missing
-    if (!isset($_SESSION['twoFactorCode']) || !isset($_SESSION['userEmail'])) {
-        header('Location: /bootsdirect/formsubmit.php');  // Redirect to the signup page
-        exit();
+        echo "Invalid 2FA code. Try again.";
     }
 }
 ?>
@@ -55,21 +75,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input 
                     type="email" 
                     class="form-control" 
+                    id="email"  
                     name="email" 
-                    value="<?php echo htmlspecialchars($_SESSION['userEmail']); ?>" 
+                    value="<?php echo isset($_SESSION['userEmail']) ? htmlspecialchars($_SESSION['userEmail']) : ''; ?>" 
                     required 
                 >
             </div>
+
             <div class="mb-3">
-                <label for="code" class="form-label">Verification Code</label>
+                <label for="twoFactorCode" class="form-label">Verification Code</label>
                 <input 
                     type="text" 
                     class="form-control" 
-                    name="code" 
+                    id="twoFactorCode"  
+                    name="twoFactorCode"  
                     placeholder="Enter code" 
                     required 
                 >
             </div>
+
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Verify</button>
             </div>
@@ -79,5 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- Include Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

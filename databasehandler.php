@@ -59,13 +59,7 @@ class DatabaseHandler {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }  
 
-    // Fetch Puma data from the database
-    public function getPumaProducts() {
-        $sql = "SELECT name, type, price, image FROM puma"; 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    
 
     // Fetch Adidas product details by ID
     public function getProductById($id) {
@@ -87,39 +81,14 @@ class DatabaseHandler {
         return $stmt->rowCount() > 0; // Returns true if update was successful
     }
     
-    
-    // Method to store the reset token
-    public function storeResetToken($email, $token, $expiry) {
-        $stmt = $this->conn->prepare("UPDATE users SET reset_token = ?, token_expiry = ? WHERE email = ?");
-        $stmt->bind_param("sss", $token, $expiry, $email);
-        $stmt->execute();
+    public function executeQuery($sql, $params = []) {
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt;
     }
     
-
-    // Method to fetch user by token
-    public function getUserByToken($token) {
-        $query = "SELECT * FROM students WHERE reset_token = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('s', $token);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
-    }
-
-    // Method to update the user's password
-    public function updateUserPassword($email, $hashedPassword) {
-        $query = "UPDATE students SET password = ?, reset_token = NULL, token_expiry = NULL WHERE email = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ss', $hashedPassword, $email);
-        $stmt->execute();
-    }
-
-    // Method to clear reset token
-    public function clearResetToken($email) {
-        $query = "UPDATE students SET reset_token = NULL, token_expiry = NULL WHERE email = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('s', $email);
-        $stmt->execute();
-    }
+    
+   
 
 }
 ?>

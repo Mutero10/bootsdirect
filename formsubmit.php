@@ -1,33 +1,38 @@
 <?php
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$message = ''; // Variable for storing feedback messages
-$messageType = ''; // 'success' or 'error'
-
-// Include necessary files
 require_once 'databasehandler.php';
-require_once 'formhandler.php';
 
-// Check if the form has been submitted
+// Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Initialize DatabaseHandler
-    $dbHandler = new DatabaseHandler();
+    $name = trim($_POST['student_id']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-    // Initialize FormHandler
-    $formHandler = new FormHandler($dbHandler);
+    // Basic validation
+    if (empty($name) || empty($email) || empty($password)) {
+        die("All fields are required!");
+    }
 
-    // Handle form submission
-    $formHandler->handleFormSubmission($_POST);
+    // Hash the password for security
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Now, generate the 2FA code using tuesday.php logic
-    include('tuesday.php');  // Ensure tuesday.php generates the 2FA code and stores it in $_SESSION
+    // Store user data temporarily in session (not inserting into DB yet)
+    $_SESSION['signup_data'] = [
+        'name' => $name,
+        'email' => $email,
+        'password' => $hashedPassword
+    ];
 
-    // Redirect to verify-2fa.php for the user to input the verification code
-    header('Location: verify-2fa.php');
+    // Redirect to tuesday.php to generate & send the 2FA code
+    header('Location: tuesday.php');
     exit();
-    include 'formsubmit.php';
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
