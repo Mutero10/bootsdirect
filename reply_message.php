@@ -1,40 +1,41 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require_once 'databasehandler.php';
 session_start();
 
-// Ensure admin is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: admin_login.php"); // Redirect if not logged in
-    exit();
-}
+$dbHandler = new DatabaseHandler();
+$pdo = $dbHandler->getPDO();
 
-$admin_username = $_SESSION['username']; // Get admin's username
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['conversation_id'], $_POST['reply_message']) && !empty(trim($_POST['reply_message']))) {
+        $conversationId = $_POST['conversation_id'];
+        $replyMessage = trim($_POST['reply_message']);
+        $senderType = 'admin'; // Admin is replying
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message_id'], $_POST['reply'])) {
-    $messageId = $_POST['message_id'];
-    $reply = trim($_POST['reply']);
+        // Retrieve the username from the conversation_id
+        $stmt = $pdo->prepare("SELECT username FROM messages WHERE conversation_id = ? LIMIT 1");
+        $stmt->execute([$conversationId]);
+        $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!empty($reply)) {
-        $dbHandler = new DatabaseHandler();
-        $pdo = $dbHandler->getPDO();
-
-        // Fetch recipient username based on the original message
-        $stmt = $pdo->prepare("SELECT username FROM messages WHERE id = :id");
-        $stmt->execute(['id' => $messageId]);
-        $message = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($message) {
-            $recipientUsername = $message['username']; // Get original sender's username
-
-            // Insert the admin's reply as a **separate message** with admin's username
-            $sql = "INSERT INTO messages (username, message, sender_type, created_at) 
-                    VALUES (:admin_username, :message, 'admin', NOW())";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute(['admin_username' => $admin_username, 'message' => $reply]);
+        if (!$userRow) {
+            echo "Error: Conversation not found.";
+            exit();
         }
-    }
-}
 
-// Redirect to prevent form resubmission on refresh
-header("Location: admin_messages.php");
-exit();
+        $username = $userRow['username']; // Get the username associated with this conversation
+
+        // Insert the reply into the messages table
+        $stmt = $pdo->prepare("INSERT INTO messages (conversation_id, username, message, sender_type, created_at) VALUES (?, ?, ?, ?, NOW())");
+        if ($stmt->execute([$conversationId, $username, $replyMessage, $senderType])) {
+            header("Location: admin_messages.php?conversation_id=" . urlencode($conversationId));
+            exit();
+        } else {
+            echo "Failed to send reply.";
+        }
+    } else {
+        echo "Message cannot be empty.";
+    }
+} else {
+    echo "Invalid request method.";
+}

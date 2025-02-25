@@ -80,7 +80,7 @@ foreach ($products as $product): ?>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
         
-        <a href="contact.php" class ="btn btn-danger"> Contact </a> <br>
+        <a href="contact.php" class ="btn btn-danger"> Contact </a> <br><br>
 
         <a href="logout.php" class="btn btn-danger">Logout</a>
         

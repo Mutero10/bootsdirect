@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once 'databasehandler.php'; // Ensure the database handler is included
 
 // Ensure the session has the stored 2FA code
@@ -8,7 +9,7 @@ if (!isset($_SESSION['twoFactorCode'])) {
 }
 
 // Debugging (Remove after testing)
-echo "Stored 2FA Code: " . $_SESSION['twoFactorCode'] . "<br>";
+//echo "Stored 2FA Code: " . $_SESSION['twoFactorCode'] . "<br>";
 
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
