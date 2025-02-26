@@ -18,55 +18,143 @@ foreach ($products as $product): ?>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* Background Styling */
-        body {
-            background-color:rgb(180, 179, 179); /* Light Blue background */
-            color: #333; /* Dark text */
-            font-family: Arial, sans-serif;
-        }
+body {
+    background-color: rgb(180, 179, 179); /* Soft grey background */
+    color: #333; /* Dark text for readability */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-        /* Navbar Styling */
-        .navbar {
-            background-color:rgb(45, 45, 45); /* Blue navbar */
-        }
+/* View Cart Button Styling */
+.view-cart-btn {
+    background-color: rgb(1, 76, 152);
+    border: none;
+    font-size: 14px; /* Reduced font size */
+    font-weight: bold;
+    padding: 8px 15px; /* Reduced padding */
+    width: auto; /* Adjust width to fit content */
+    display: inline-block; /* Keeps button inline */
+    text-align: center;
+    border-radius: 5px;
+    transition: 0.3s;
+    color: white;
+}
 
-        .navbar-brand, .navbar-nav .nav-link {
-            color: #fff !important; /* White text for navbar items */
-        }
+.view-cart-btn:hover {
+    background-color: rgb(0, 65, 230);
+    transform: scale(1.05);
+}
 
-        .navbar-nav .nav-link:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-            border-radius: 5px;
-        }
+/* Navbar Styling */
+.navbar {
+    background-color: rgb(45, 45, 45); /* Dark grey navbar */
+    padding: 15px 20px;
+}
 
-        /* Container Styling */
-        .container {
-            margin-top: 30px;
-        }
+.navbar-brand, .navbar-nav .nav-link {
+    color: white !important; /* White text */
+    font-weight: bold;
+    text-transform: uppercase;
+}
 
-        /* Button Styling */
-        .btn-warning {
-            background-color:rgb(1, 76, 152);
-            border: none;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 10px 20px;
-            display: block;
-            width: 200px;
-            margin: 10px auto;
-            text-align: center;
-            transition: 0.3s;
-        }
+.navbar-nav .nav-link:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
 
-        .btn-warning:hover {
-            background-color:rgb(0, 65, 230);
-            transform: scale(1.05);
-        }
+/* Main Container */
+.container {
+    margin-top: 30px;
+    max-width: 1200px;
+}
 
-        .filter-section {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-        }
+/* Product Section */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Product Cards */
+.product-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Product Images */
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Product Title */
+.product-card h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Product Price */
+.product-card .price {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(0, 65, 230); /* Dark blue */
+}
+
+/* Buy Button */
+.btn-warning {
+    background-color: rgb(1, 76, 152);
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    text-align: center;
+    border-radius: 5px;
+    transition: 0.3s;
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: rgb(0, 65, 230);
+    transform: scale(1.05);
+}
+
+/* Filter Section */
+.filter-section {
+    background: rgba(255, 255, 255, 0.2); /* Lightened for visibility */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .btn-warning {
+        width: 100%;
+    }
+}
+
     </style>
 </head>
 
@@ -80,7 +168,7 @@ foreach ($products as $product): ?>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
         
-        <a href="contact.php" class ="btn btn-danger"> Contact </a> <br><br>
+     <!--   <a href="contact.php" class ="btn btn-danger"> Contact </a> <br><br> -->
 
         <a href="logout.php" class="btn btn-danger">Logout</a>
         

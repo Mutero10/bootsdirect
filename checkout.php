@@ -40,63 +40,136 @@ foreach ($cartItems as $item) {
     <title>Checkout</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <style>
-    /* Background Styling */
-    body {
-        background: rgb(20, 30, 48); /* Same as cart.php */
-        color: white;
-        font-family: Arial, sans-serif;
-    }
+<style>
+  /* General Styling */
+body {
+    background: rgb(20, 30, 48); /* Dark background */
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-    /* Container Styling */
-    .container {
-        background: rgba(255, 255, 255, 0.1); /* Same as cart.php */
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(10px);
-        color: black; /* Black text inside the container */
-    }
+.list-group-item {
+    background: rgba(255, 255, 255, 0.1) !important; /* Matches container */
+    color: white !important; /* Ensures text remains readable */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Soft border */
+}
 
-    /* Header Styling */
-    h2, h4 {
-        text-align: center;
-        font-weight: bold;
-    }
+/* Navbar Styling */
+.navbar {
+    background: linear-gradient(90deg, rgb(0, 59, 177), rgb(20, 30, 48)); /* Dark blue gradient */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    /* Form Styling */
-    .form-group label {
-        font-weight: bold;
-    }
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
 
-    /* Reduce text field width */
-    .form-control {
-        width: 50%; /* Adjust the width as needed */
-        margin: 0 auto; /* Center the input fields */
-        display: block;
-    }
+.navbar a:hover {
+    background: grey;
+    color: black;
+    border-radius: 5px;
+}
 
-    /* Button Styling */
-    .btn-primary {
-        background-color: rgb(0, 59, 177);
-        border: none;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 10px 20px;
-        transition: 0.3s;
-    }
+/* Main Container Styling */
+.container {
+    background: rgba(255, 255, 255, 0.1); /* Slight transparency for a smooth look */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    color: white; /* White text for readability */
+    max-width: 600px;
+    margin: 20px auto;
+}
 
-    .btn-primary:hover {
-        background-color: rgb(6, 164, 237);
-        transform: scale(1.05);
-    }
+/* Checkout Section Styling - Same as container */
+.checkout-container {
+    background: rgba(255, 255, 255, 0.1); /* Same as .container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    color: black; /* Black text for readability */
+}
 
-    /* Center text fields on smaller screens */
-    @media (max-width: 768px) {
-        .form-control {
-            width: 100%;
-        }
+/* Header Styling */
+h2, h4 {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Form Styling */
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Input Fields */
+.form-control {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    padding: 8px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.checkout-container .form-control {
+    background: rgba(255, 255, 255, 0.2); /* Keep inputs same as the container */
+    color: white;
+    border: 1px solid grey;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.checkout-container .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: rgb(0, 59, 177);
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin-top: 15px;
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.3s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: rgb(6, 164, 237);
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-control, .btn-primary {
+        width: 100%;
     }
+}
+
+
 </style>
 
 

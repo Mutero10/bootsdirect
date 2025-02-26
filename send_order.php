@@ -55,7 +55,7 @@ if ($stmt->affected_rows > 0) {
 
     // Simulated delivery details
     $_SESSION['delivery_details'] = [
-        'address' => 'Nairobi, Kilimani',
+       // 'address' => 'Nairobi, Kilimani',
         'delivery_time' => '2 hours',
         'order_confirmation_number' => $orderNumber,
         'order_id' => $orderID

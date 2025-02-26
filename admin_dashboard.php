@@ -52,86 +52,198 @@ $chartData = json_encode($products, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT
     <title>Admin Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .navbar {
-            background-color: #333;
-            overflow: hidden;
-            padding: 15px;
-            text-align: right;
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 10px 15px;
-        }
-        .navbar a:hover {
-            background-color: #575757;
-            border-radius: 5px;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        h2, h3 {
-            text-align: center;
-        }
-        canvas {
-            display: block;
-            margin: 20px auto;
-            max-width: 600px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #333;
-            color: white;
-        }
-        .btn-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            text-decoration: none;
-            color: white;
-            background-color: #28a745;
-            border-radius: 5px;
-        }
-        .btn:hover {
-            background-color: #218838;
-        }
-        .edit-btn {
-            background-color: #007bff;
-        }
-        .edit-btn:hover {
-            background-color: #0056b3;
-        }
-        .delete-btn {
-            background-color: #dc3545;
-        }
-        .delete-btn:hover {
-            background-color: #c82333;
-        }
+        /* Global Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e3e3e3;
+    color: #333;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #2c3e50;
+    padding: 15px;
+    text-align: right;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #34495e;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #2c3e50;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #34495e;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+/* Card Layout for Sections */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #2c3e50;
+    color: white;
+}
+
+/* Button Styling */
+.btn {
+    color: white !important; /* Ensures text is white */
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+/* Adjust individual button styles */
+.edit-btn {
+    background-color:rgb(0, 0, 0); /* Blue */
+}
+
+.edit-btn:hover {
+    background-color:rgb(1, 112, 230);
+}
+
+.delete-btn {
+    background-color:rgb(0, 0, 0); /* Red */
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+
+/* Fix the button color */
+.btn-download {
+    background-color: black !important; /* Black background */
+    color: white !important; /* White text */
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-download:hover {
+    background-color: #333 !important; /* Darker black on hover */
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-edit {
+    background-color: #007bff;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Chart Section */
+canvas {
+    display: block;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+/* Force black font for the "Add Product" button */
+.btn-container .btn {
+    background-color: white !important; /* White background */
+    color: black !important; /* Black text */
+    border: 2px solid black; /* Optional: Add a black border */
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-container .btn:hover {
+    background-color: #ddd !important; /* Light gray on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .dashboard-container {
+        margin-left: 0;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -140,7 +252,7 @@ $chartData = json_encode($products, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <a href="admin_logout.php" class="btn btn-danger">Logout</a>
-        <a href="admin_messages.php" class="btn btn-primary">View Messages</a>
+      <!--  <a href="admin_messages.php" class="btn btn-primary">View Messages</a> -->
 
     </div>
 </nav>
@@ -179,7 +291,7 @@ $chartData = json_encode($products, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT
     </script>
 
 <form action="generate_pdf.php" method="POST">
-    <button type="submit" class="btn btn-primary">Download Product Report (PDF)</button>
+<button type="submit" class="btn btn-download">Download Product Report (PDF)</button>
 </form>
 
     <!-- Product Management Section -->

@@ -48,58 +48,114 @@ $conn->close();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* Background Styling */
-        body {
-            background: rgb(20, 30, 48); /* Consistent with cart.php */
-            color: white;
-            font-family: Arial, sans-serif;
-        }
+body {
+    background: rgb(20, 30, 48); /* Dark theme for consistency */
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-        /* Navbar Styling */
-        .navbar {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
+/* Navbar Styling */
+.navbar {
+    background: linear-gradient(90deg, rgb(0, 59, 177), rgb(20, 30, 48)); /* Dark blue gradient */
+    backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .navbar-brand, .nav-link {
-            color: white !important;
-            font-weight: bold;
-        }
+.list-group-item {
+    background: rgba(255, 255, 255, 0.1) !important; /* Matches container */
+    color: white !important; /* Ensures text remains readable */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Soft border */
+}
 
-        .navbar-brand:hover, .nav-link:hover {
-            color: #06a4ed !important;
-        }
+.navbar-brand, .nav-link {
+    color: white !important;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
 
-        /* Container Styling */
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            color: black;
-            max-width: 600px;
-            text-align: center;
-        }
+.navbar-brand:hover, .nav-link:hover {
+    color: #06a4ed !important;
+}
 
-        /* Header Styling */
-        h2, h4 {
-            font-weight: bold;
-        }
+/* Main Container Styling */
+.container {
+    background: rgba(255, 255, 255, 0.1); /* Transparent, matching the background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    color: white; /* Ensure text is readable */
+    max-width: 600px;
+    text-align: center;
+}
 
-        /* Button Styling */
-        .btn-primary {
-            background-color: rgb(0, 59, 177);
-            border: none;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 10px 20px;
-            transition: 0.3s;
-        }
+/* Checkout Section Styling */
+.checkout-container {
+    background: rgba(255, 255, 255, 0.1); /* Same as .container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    color: white; /* Keep text readable */
+}
 
-        .btn-primary:hover {
-            background-color: rgb(6, 164, 237);
-            transform: scale(1.05);
-        }
+/* Header Styling */
+h2, h4 {
+    font-weight: bold;
+}
+
+/* Input Fields */
+.form-control {
+    width: 80%;
+    margin: 10px auto;
+    display: block;
+    padding: 8px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: rgb(0, 59, 177);
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin-top: 15px;
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.3s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: rgb(6, 164, 237);
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-control, .btn-primary {
+        width: 100%;
+    }
+}
+
 
     </style>
 </head>
